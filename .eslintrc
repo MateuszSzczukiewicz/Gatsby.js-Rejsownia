@@ -1,0 +1,84 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "project": "./tsconfig.json",
+    "babelOptions": {
+      "babelrc": false,
+      "configFile": false,
+      "presets": [
+        "@babel/preset-react"
+      ]
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "rules": {
+    "no-unused-expressions": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-useless-escape": "off",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "off",
+    "import/no-unresolved": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": "off",
+    "react/button-has-type": "off",
+    "react/self-closing-comp": "off",
+    "react/prop-types": "warn",
+    "react/destructuring-assignment": "warn",
+    "no-debugger": "off",
+    "jsx-a11y/label-has-associated-control": "warn",
+    "react/require-default-props": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "./src/pages/*.tsx",
+        "./src/templates/*.tsx"
+      ],
+      "rules": {
+        "react/jsx-filename-extension": [
+          1,
+          {
+            "extensions": [
+              ".tsx"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "gatsby-browser.tsx",
+        "gatsby-ssr.tsx",
+        "*.styles.*"
+      ],
+      "rules": {
+        "react/jsx-filename-extension": [
+          1,
+          {
+            "extensions": [
+              ".ts",
+              ".tsx"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
