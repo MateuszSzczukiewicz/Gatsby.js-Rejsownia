@@ -5,6 +5,9 @@
       "assets/*": [
         "src/assets/*"
       ],
+      "assets/icons-components/*": [
+        "src/assets/icons-components/*"
+      ],
       "components/*": [
         "src/components/*"
       ],
@@ -112,5 +115,5 @@
 // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
 "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
 },
-"include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./gatsby-browser.tsx", "./gatsby-ssr.tsx", "./plugins/**/*"]
+"include": ["./src/**/*", "./assets/**/*", "./components/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./gatsby-browser.tsx", "./gatsby-ssr.tsx", "./plugins/**/*"]
 }
