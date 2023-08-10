@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from 'styled-components';
-import { LogoIcon } from 'assets/icons-components/LogoIcon.tsx';
-import StyledIcon from '../StyledIcon/StyledIcon';
+import { LogoIcon } from 'assets/icons-components/LogoIcon';
+import { StyledIcon } from '../StyledIcon/StyledIcon';
 
 interface OuterWrapperProps {
   isOpen: boolean;
@@ -70,7 +71,9 @@ export const Wrapper = styled.div<OuterWrapperProps>`
   }
 `;
 
-export const StyledLogo = styled(LogoIcon)<StyledLogoProps>`
+export const StyledLogo = styled(({ isMobile, isSmall, ...props }: StyledLogoProps) => (
+  <LogoIcon {...props} />
+))`
   width: ${({ isSmall }) => (isSmall ? '60px' : '100px')};
 
   ${({ theme }) => theme.mq.desktop} {

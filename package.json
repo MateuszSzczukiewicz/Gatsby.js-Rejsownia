@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@babel/types": "^7.22.10",
     "@types/styled-components": "^5.1.26",
     "babel-plugin-styled-components": "^2.1.4",
     "gatsby": "^5.11.0",

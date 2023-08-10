@@ -1,8 +1,8 @@
 import React from 'react';
 // import { graphql, Link } from 'gatsby';
 
-const Homepage = () => {
+const Czarter = () => {
   return <></>;
 };
 
-export default Homepage;
+export default Czarter;

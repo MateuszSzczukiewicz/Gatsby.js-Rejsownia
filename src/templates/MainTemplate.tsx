@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'assets/styles/GlobalStyles';
 import { theme } from 'assets/styles/theme';
+import { Navigation } from 'components/Navigation/Navigation';
 import 'assets/styles/normalize.css';
+import { Footer } from 'components/Footer/Footer.tsx';
 
 interface MainTemplateProps {
   children: React.ReactNode;
@@ -12,7 +14,11 @@ interface MainTemplateProps {
 export const MainTemplate: React.FC<MainTemplateProps> = ({ children }) => (
   <>
     <GlobalStyle />
-    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Navigation />
+      <main style={{ height: '100vh' }}>{children}</main>
+      <Footer />
+    </ThemeProvider>
   </>
 );
 

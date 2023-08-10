@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import { FacebookIcon } from 'assets/icons-components/FacebookIcon.tsx';
-import { InstagramIcon } from 'assets/icons-components/InstagramIcon.tsx';
+import { FacebookIcon } from 'assets/icons-components/FacebookIcon';
+import { InstagramIcon } from 'assets/icons-components/InstagramIcon';
 import {
   OuterWrapper,
   StyledBurger,
@@ -9,9 +9,9 @@ import {
   StyledNavigation,
   StyledSocialIcon,
   Wrapper,
-} from './Navigation.styles';
+} from './Navigation.styles.tsx';
 
-const Navigation: React.FC = () => {
+export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavigation = () => {
@@ -21,7 +21,7 @@ const Navigation: React.FC = () => {
   return (
     <OuterWrapper>
       <Link to="/">
-        <StyledLogo isSmall isMobile />
+        <StyledLogo isMobile isSmall />
       </Link>
       <StyledBurger onClick={toggleNavigation}>
         <div />
@@ -35,7 +35,24 @@ const Navigation: React.FC = () => {
         <StyledNavigation>
           <ul>
             <li>
-              <Link onClick={toggleNavigation} to="/"></Link>
+              <Link onClick={toggleNavigation} to="/rejsy">
+                Rejsy turystyczne
+              </Link>
+            </li>
+            <li>
+              <Link onClick={toggleNavigation} to="/staze">
+                Staże i szkolenia
+              </Link>
+            </li>
+            <li>
+              <Link onClick={toggleNavigation} to="/czarter">
+                Czarter jachtów
+              </Link>
+            </li>
+            <li>
+              <Link onClick={toggleNavigation} to="/kontakt">
+                Kontakt
+              </Link>
             </li>
           </ul>
         </StyledNavigation>
@@ -51,5 +68,3 @@ const Navigation: React.FC = () => {
     </OuterWrapper>
   );
 };
-
-export default Navigation;
