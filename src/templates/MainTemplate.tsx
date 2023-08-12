@@ -16,7 +16,7 @@ export const MainTemplate: React.FC<MainTemplateProps> = ({ children }) => (
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <Navigation />
-      <main style={{ height: '100vh' }}>{children}</main>
+      <main>{children}</main>
       <Footer />
     </ThemeProvider>
   </>

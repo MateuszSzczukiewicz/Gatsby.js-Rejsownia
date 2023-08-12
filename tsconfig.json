@@ -17,6 +17,9 @@
     },
 
     "allowImportingTsExtensions": true,
+
+
+
 /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
 /* Projects */
@@ -115,5 +118,7 @@
 // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
 "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
 },
-"include": ["./src/**/*", "./assets/**/*", "./components/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./gatsby-browser.tsx", "./gatsby-ssr.tsx", "./plugins/**/*"]
+"include": ["./src/**/*", "./assets/**/*", "./components/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./gatsby-browser.tsx", "./gatsby-ssr.tsx",
+  "./src/gatsby-types.d.ts",
+  "./src/global.d.ts", "./plugins/**/*"]
 }

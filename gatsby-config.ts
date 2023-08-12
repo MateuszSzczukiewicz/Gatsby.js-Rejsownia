@@ -5,15 +5,20 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules');
+const gatsbyRequiredRules = path.join(
+  process.cwd(),
+  'node_modules',
+  'gatsby',
+  'dist',
+  'utils',
+  'eslint-rules',
+);
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'la-yachting',
     siteUrl: 'https://la-yachting.pl',
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     {
@@ -56,7 +61,7 @@ const config: GatsbyConfig = {
         failOnError: false,
         rulePaths: [gatsbyRequiredRules],
         stages: ['develop'],
-        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        extensions: ['ts', 'tsx'],
         exclude: ['node_modules', 'bower_components', '.cache', 'public'],
       },
     },
@@ -77,19 +82,24 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        rule: {
-          include: /assets\/icons-components/,
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true,
         jsxPragma: 'jsx',
         allExtensions: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-svgr',
+      options: {
+        prettier: true, // use prettier to format JS code output (default)
+        svgo: true, // use svgo to optimize SVGs (default)
+        svgoConfig: {
+          plugins: [
+            { removeViewBox: true }, // remove viewBox when possible (default)
+            { cleanupIDs: true }, // remove unused IDs and minify remaining IDs (default)
+          ],
+        },
       },
     },
   ],
