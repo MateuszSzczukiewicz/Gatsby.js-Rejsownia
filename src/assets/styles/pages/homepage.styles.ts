@@ -171,7 +171,7 @@ export const OffersSection = styled(StyledSection)`
 `;
 
 export const StyledTitle = styled(Link)`
-  font-size: ${({ theme }) => theme.font.size.thumbnail};
+  font-size: ${({ theme }) => theme.font.size.mobileMenu};
   font-weight: bold;
   line-height: 1.2;
   cursor: pointer;
@@ -222,29 +222,34 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
 export const ShowcaseGallery = styled.div`
   margin: 25px 0 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  position: relative;
 
   ${({ theme }) => theme.mq.desktop} {
     margin: 50px 0 50px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-gap: 25px;
     position: relative;
+  }
+
+  img:nth-child(even) {
+    margin-right: auto;
+  }
+
+  img:nth-child(odd) {
+    margin-left: auto;
   }
 `;
 
 export const ShowcaseImage = styled.img<ShowcaseImageProps>`
-  width: 100%;
-  height: ${({ isBig }) => (isBig ? '250px' : '250px')};
+  width: 80vw;
+  height: 150px;
   object-fit: cover;
-  margin: 10px 0;
+  margin: 10px auto;
 
   ${({ theme }) => theme.mq.desktop} {
-    height: ${({ isBig }) => (isBig ? '300px' : '300px')};
+    width: 600px;
+    height: 300px;
     margin: 0;
   }
 `;
@@ -276,15 +281,18 @@ export const ServicesSection = styled(StyledSection)`
   ${({ theme }) => theme.mq.desktop} {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 0 50px;
+    max-width: 1225px;
+    margin: 0 auto;
 
     div {
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
 
     & > p {
+      margin: 0 auto;
       align-self: center;
       max-width: 450px;
     }

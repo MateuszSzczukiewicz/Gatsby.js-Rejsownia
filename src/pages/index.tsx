@@ -117,9 +117,9 @@ const Homepage: React.FC<PageProps<PageData<ImageData>>> = ({ data }) => (
       </div>
       <ShowcaseGallery>
         <ShowcaseImage src={data.grid1.publicURL} alt="#" />
-        <ShowcaseImage isBig src={data.grid2.publicURL} alt="#" />
+        <ShowcaseImage src={data.grid2.publicURL} alt="#" />
         <ShowcaseImage src={data.grid3.publicURL} alt="#" />
-        <ShowcaseImage isBig src={data.grid4.publicURL} alt="#" />
+        <ShowcaseImage src={data.grid4.publicURL} alt="#" />
       </ShowcaseGallery>
     </ShowcaseSection>
     <ServicesSection>
