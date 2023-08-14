@@ -24,15 +24,31 @@ const Staze: React.FC<StazeProps> = ({ data }) => {
         </p>
       </IntroSection>
       <Gallery>
-        <Thumbnail imageSource={data.thumbnail.publicURL} miejsce="Grecja" data="01.01.2021" />
-        <Thumbnail imageSource={data.thumbnail.publicURL} miejsce="Sycylia" data="02.02.2022" />
+        <Thumbnail
+          imageSource={data.thumbnail.publicURL}
+          miejsce="Grecja"
+          data="01.01.2021 - 02.02.2021"
+        />
+        <Thumbnail
+          imageSource={data.thumbnail.publicURL}
+          miejsce="Sycylia"
+          data="02.02.2022 - 03.03.2022"
+        />
         <Thumbnail
           imageSource={data.thumbnail.publicURL}
           miejsce="Wyspy Kanaryjskie"
-          data="03.03.2023"
+          data="03.03.2023 - 04.04.2023"
         />
-        <Thumbnail imageSource={data.thumbnail.publicURL} miejsce="Karaiby" data="04.04.2024" />
-        <Thumbnail imageSource={data.thumbnail.publicURL} miejsce="Norwegia" data="05.05.2025" />
+        <Thumbnail
+          imageSource={data.thumbnail.publicURL}
+          miejsce="Karaiby"
+          data="04.04.2024 - 05.05.2024"
+        />
+        <Thumbnail
+          imageSource={data.thumbnail.publicURL}
+          miejsce="Norwegia"
+          data="05.05.2025 - 06.06.2025"
+        />
       </Gallery>
       <EmptyState>
         <h2>Brak rejsów turystycznych</h2>

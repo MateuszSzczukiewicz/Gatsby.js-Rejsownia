@@ -1,4 +1,4 @@
-declare module 'assets/icons-components/*.svg' {
+declare module 'assets/icons/*.svg' {
   import React from 'react';
 
   const Component: React.FC<React.SVGProps<SVGSVGElement>>;

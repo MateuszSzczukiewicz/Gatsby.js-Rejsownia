@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { FacebookIcon } from 'assets/icons-components/FacebookIcon';
-import { InstagramIcon } from 'assets/icons-components/InstagramIcon';
+import { FacebookIcon } from 'assets/icons/FacebookIcon';
+import { InstagramIcon } from 'assets/icons/InstagramIcon';
 import { StyledFooter, StyledFooterIcon } from './Footer.styles';
 
 export const Footer: React.FC = () => (
