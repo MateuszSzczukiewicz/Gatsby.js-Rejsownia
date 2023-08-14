@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
-import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading.tsx';
-import { StyledList } from 'components/StyledList/StyledList.styles';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
+import { ContentWrapper } from '../components/ContentWrapper/ContentWrapper.styles';
+import { HighlightedHeading } from '../components/HighlightedHeading/HighlightedHeading';
+import { StyledList } from '../components/StyledList/StyledList.styles';
 import {
   Hero,
   HeroImage,
@@ -11,7 +11,14 @@ import {
   WelcomeSectionImage,
   WelcomeSectionContent,
   OffersSection,
-} from 'assets/styles/pages/homepage.styles';
+  StyledTitle,
+  ShowcaseSection,
+  StyledButton,
+  ShowcaseImage,
+  ShowcaseGallery,
+  StyledLinkButton,
+  ServicesSection,
+} from 'assets/styles/pages/homepage.styles.ts';
 
 interface ImageData {
   publicURL: string;
@@ -48,44 +55,109 @@ const Homepage: React.FC<PageProps<PageData<ImageData>>> = ({ data }) => (
           pięknem natury i sztuką żeglowania.
         </p>
       </WelcomeSectionContent>
-      <WelcomeSectionImage imageSource={data.hero.publicURL} />
+      <WelcomeSectionImage imageSource={data.welcome.publicURL} />
     </WelcomeSection>
     <OffersSection>
       <HighlightedHeading width="50" isRight>
-        Dlaczego szukasz właśnie nas?
+        Odkryj Świat Naszych Rejsów!
       </HighlightedHeading>
       <StyledList>
         <li>
-          <h3>Rejsy turystyczne</h3>
+          <StyledTitle to="/rejsy">Rejsy turystyczne</StyledTitle>
           <p>
-            Organizujemy regularne rejsy turystyczne. Zapraszamy zarówno wilków morskich jak i tych,
-            którzy pierwszy raz chcą spróbować swoich sił na morzu!
+            Zapraszamy Cię do naszej morskiej odysei! Nasze rejsy turystyczne to prawdziwe
+            doświadczenie żeglowania, oparte na aktywnym uczestnictwie w załodze. Niezależnie od
+            Twojego poziomu doświadczenia, zapewniamy Ci wyjątkową okazję do zdobycia morskich
+            umiejętności, pod okiem naszych ekspertów, podczas niezapomnianych przygód na wodach.
+            Dołącz i poczuj ducha żeglarstwa razem z nami!
           </p>
         </li>
         <li>
-          <h3>Staże i szkolenia</h3>
+          <StyledTitle to="/staze">Staże i szkolenia</StyledTitle>
           <p>
-            Prowadzimy kursy i i rejsy szkoleniowe na patenty morskie i śródlądowe umożliwiające
-            zdobycie patentów żeglarskich i motorowodnych zakończone egzaminem państwowym
-            certyfikowanym przez PZŻ.
+            Witaj na pokładzie naszych ekscytujących rejsów szkoleniowych! Oferujemy niepowtarzalne
+            doświadczenia żeglowania, gdzie aktywne uczestnictwo w załodze to klucz do nabywania
+            morskich umiejętności, niezależnie od Twojego poziomu. Możesz u nas zdobyć patent
+            sternika, stawiając czoła wyzwaniom morskim. Dołącz do nas, by razem odkrywać
+            fascynujący świat żeglarstwa i zdobywać wiedzę, która doprowadzi cię do nieodkrytych
+            dotąd możliwości!
           </p>
         </li>
         <li>
-          <h3>Czarter jachtów</h3>
+          <StyledTitle to="/czarter">Czarter yachtów</StyledTitle>
           <p>
-            Dzięki ofercie czarterowej umożliwiamy żeglowanie w najatrakcyjniejszych miejscach na
-            całym świecie – od malowniczego wybrzeża Chorwacji, Grecji aż po Karaiby, czy rajskie
-            wyspy na Seszelach i w Tajlandii.
+            Oferujemy Ci także niezapomniany czarter łodzi, gdzie marzenia stają się
+            rzeczywistością! Nasza wyjątkowa oferta to mistrzowskie dopasowanie rejsu do Twoich
+            osobistych pragnień. Niezależnie od daty, lokalizacji czy liczby uczestników – naszą
+            misją jest spełnienie każdego Twojego oczekiwania. Poznaj nieodkryte jeszcze zakątki
+            światowych mórz i zanurz się w najpiękniejszych przygodach, jakie życie na wodzie może
+            Ci zaoferować!
           </p>
         </li>
       </StyledList>
     </OffersSection>
+    <ShowcaseSection>
+      <h2>Oferta rejsów</h2>
+      <div>
+        <StyledButton as={Link} to="/rejsy" isCentered>
+          Grecja
+        </StyledButton>
+        <StyledButton as={Link} to="/rejsy" isCentered>
+          Sycylia
+        </StyledButton>
+        <StyledButton as={Link} to="/rejsy" isCentered>
+          Wyspy Kanaryskie
+        </StyledButton>
+        <StyledButton as={Link} to="/rejsy" isCentered>
+          Karaiby
+        </StyledButton>
+        <StyledButton as={Link} to="/rejsy" isCentered>
+          Norwegia
+        </StyledButton>
+      </div>
+      <ShowcaseGallery>
+        <ShowcaseImage src={data.grid1.publicURL} alt="#" />
+        <ShowcaseImage isBig src={data.grid2.publicURL} alt="#" />
+        <ShowcaseImage src={data.grid3.publicURL} alt="#" />
+        <ShowcaseImage isBig src={data.grid4.publicURL} alt="#" />
+      </ShowcaseGallery>
+    </ShowcaseSection>
+    <ServicesSection>
+      <div>
+        <HighlightedHeading width="55">Zrealizuj swoje marzenia!</HighlightedHeading>
+        <StyledLinkButton as={Link} to="/kontakt">
+          Skontaktuj się z nami!
+        </StyledLinkButton>
+      </div>
+      <p>
+        L.A. Yachting – Twoja droga do niezapomnianych chwil na falach, do spotkań z naturą w jej
+        najczystszej formie i tworzenia relacji na całe lata. Przygotuj się na wyjątkowe przygody,
+        nowe przyjaźnie i niesamowite wspomnienia. Razem z nami żeglowanie nabiera nowego znaczenia
+        – staje się pasją, stylem życia i sposobem na odkrywanie świata w sposób, o jakim marzyłeś.
+        Dołącz do Nas i odkryj, jak piękny może być świat na morzu.
+      </p>
+    </ServicesSection>
   </ContentWrapper>
 );
 
 export const query = graphql`
   query Homepage {
     hero: file(relativePath: { regex: "/homepage/0_hero.jpg/" }) {
+      publicURL
+    }
+    welcome: file(relativePath: { regex: "/homepage/1_welcome.jpg/" }) {
+      publicURL
+    }
+    grid1: file(relativePath: { regex: "/homepage/2_grid.jpg/" }) {
+      publicURL
+    }
+    grid2: file(relativePath: { regex: "/homepage/3_grid.jpg/" }) {
+      publicURL
+    }
+    grid3: file(relativePath: { regex: "/homepage/4_grid.jpg/" }) {
+      publicURL
+    }
+    grid4: file(relativePath: { regex: "/homepage/5_grid.jpg/" }) {
       publicURL
     }
   }

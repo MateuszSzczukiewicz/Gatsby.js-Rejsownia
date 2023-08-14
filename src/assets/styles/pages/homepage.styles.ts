@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 
 interface HeroImageProps {
   imageSource: string;
@@ -6,6 +7,14 @@ interface HeroImageProps {
 
 interface WelcomeSectionImageProps {
   imageSource: string;
+}
+
+interface ShowcaseImageProps {
+  isBig?: boolean;
+}
+
+interface StyledButtonProps {
+  isCentered?: boolean;
 }
 
 export const Hero = styled.div`
@@ -154,8 +163,130 @@ export const WelcomeSectionImage = styled.div<WelcomeSectionImageProps>`
 
 export const OffersSection = styled(StyledSection)`
   ${({ theme }) => theme.mq.desktop} {
+    //margin-top: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+`;
+
+export const StyledTitle = styled(Link)`
+  font-size: ${({ theme }) => theme.font.size.thumbnail};
+  font-weight: bold;
+  line-height: 1.2;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+`;
+
+export const ShowcaseSection = styled(StyledSection)`
+  h2 {
+    font-size: ${({ theme }) => theme.font.size.headingMobile};
+    text-align: center;
+    margin: 30px 0 10px;
+  }
+
+  div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    margin-top: -60px;
+
+    h2 {
+      margin: 0 0 30px;
+    }
+
+    div:nth-child(2) {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+`;
+
+export const StyledButton = styled.button<StyledButtonProps>`
+  border: 1px solid ${({ theme }) => theme.color.darkBlue};
+  background-color: transparent;
+  font-size: ${({ theme }) => theme.font.size.button};
+  font-family: ${({ theme }) => theme.font.family.montserrat};
+  padding: 10px 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: block;
+  margin: 8px 15px;
+  color: black;
+  text-decoration: none;
+`;
+
+export const ShowcaseGallery = styled.div`
+  margin: 25px 0 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+
+  ${({ theme }) => theme.mq.desktop} {
+    margin: 50px 0 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 25px;
+    position: relative;
+  }
+`;
+
+export const ShowcaseImage = styled.img<ShowcaseImageProps>`
+  width: 100%;
+  height: ${({ isBig }) => (isBig ? '250px' : '250px')};
+  object-fit: cover;
+  margin: 10px 0;
+
+  ${({ theme }) => theme.mq.desktop} {
+    height: ${({ isBig }) => (isBig ? '300px' : '300px')};
+    margin: 0;
+  }
+`;
+
+export const StyledLinkButton = styled(Link)`
+  font-family: ${({ theme }) => theme.font.family.montserrat};
+  font-size: ${({ theme }) => theme.font.size.paragraph};
+  color: ${({ theme }) => theme.color.darkBlue};
+  text-decoration: underline;
+  position: relative;
+  display: inline-block;
+  margin: 5px 0 10px;
+
+  &::after {
+    position: absolute;
+    content: '';
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 50%;
+    width: 20px;
+    height: 20px;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+`;
+
+export const ServicesSection = styled(StyledSection)`
+  ${({ theme }) => theme.mq.desktop} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 50px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    & > p {
+      align-self: center;
+      max-width: 450px;
+    }
   }
 `;

@@ -16,7 +16,7 @@ const gatsbyRequiredRules = path.join(
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: 'la-yachting',
+    title: 'L.A. Yachting',
     siteUrl: 'https://la-yachting.pl',
   },
   graphqlTypegen: true,
