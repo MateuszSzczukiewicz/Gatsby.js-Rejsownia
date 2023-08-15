@@ -5,8 +5,8 @@
       "assets/*": [
         "src/assets/*"
       ],
-      "assets/icons-components/*": [
-        "src/assets/icons-components/*"
+      "assets/icons/*": [
+        "src/assets/icons/*"
       ],
       "components/*": [
         "src/components/*"

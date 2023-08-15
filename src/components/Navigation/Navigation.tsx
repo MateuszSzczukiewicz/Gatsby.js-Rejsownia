@@ -20,7 +20,7 @@ export const Navigation: React.FC = () => {
 
   return (
     <OuterWrapper>
-      <Link to="/">{/*<StyledLogo isMobile isSmall />*/}</Link>
+      <Link to="/">{<StyledLogo isMobile isSmall />}</Link>
       <StyledBurger onClick={toggleNavigation}>
         <div />
         <div />

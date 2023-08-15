@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LogoIcon } from 'assets/icons/LogoIcon';
+import LogoIcon from 'assets/icons/LogoIcon.jpg';
 import { StyledIcon } from '../StyledIcon/StyledIcon';
 
 interface OuterWrapperProps {

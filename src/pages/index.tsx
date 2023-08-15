@@ -99,19 +99,19 @@ const Homepage: React.FC<PageProps<PageData<ImageData>>> = ({ data }) => (
     <ShowcaseSection>
       <h2>Oferta rejsów</h2>
       <div>
-        <StyledButton as={Link} to="/rejsy" isCentered>
+        <StyledButton as={Link} to="/rejsy/grecja" isCentered>
           Grecja
         </StyledButton>
-        <StyledButton as={Link} to="/rejsy" isCentered>
+        <StyledButton as={Link} to="/rejsy/sycylia" isCentered>
           Sycylia
         </StyledButton>
-        <StyledButton as={Link} to="/rejsy" isCentered>
+        <StyledButton as={Link} to="/rejsy/wyspy-kanaryjskie" isCentered>
           Wyspy Kanaryskie
         </StyledButton>
-        <StyledButton as={Link} to="/rejsy" isCentered>
+        <StyledButton as={Link} to="/rejsy/karaiby" isCentered>
           Karaiby
         </StyledButton>
-        <StyledButton as={Link} to="/rejsy" isCentered>
+        <StyledButton as={Link} to="/rejsy/norwegia" isCentered>
           Norwegia
         </StyledButton>
       </div>

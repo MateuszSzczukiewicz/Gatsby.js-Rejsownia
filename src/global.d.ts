@@ -5,3 +5,8 @@ declare module 'assets/icons/*.svg' {
 
   export default Component;
 }
+
+declare module '*.jpg' {
+  const value: string;
+  export default value;
+}

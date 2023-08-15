@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@babel/types": "^7.22.10",
+    "@formspree/react": "^2.5.0",
     "@svgr/webpack": "^8.0.1",
     "@types/styled-components": "^5.1.26",
     "babel-plugin-styled-components": "^2.1.4",
