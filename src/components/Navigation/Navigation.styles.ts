@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from 'styled-components';
-import LogoIcon from 'assets/icons/LogoIcon.jpg';
 import { StyledIcon } from '../StyledIcon/StyledIcon';
 
 interface OuterWrapperProps {
@@ -8,6 +6,7 @@ interface OuterWrapperProps {
 }
 
 interface StyledLogoProps {
+  imageSource: string;
   isSmall?: boolean;
   isMobile?: boolean;
 }
@@ -71,10 +70,14 @@ export const Wrapper = styled.div<OuterWrapperProps>`
   }
 `;
 
-export const StyledLogo = styled(({ isMobile, isSmall, ...props }: StyledLogoProps) => (
-  <LogoIcon {...props} />
-))`
+export const StyledLogo = styled.div<StyledLogoProps>`
   width: ${({ isSmall }) => (isSmall ? '60px' : '100px')};
+  display: initial;
+  position: relative;
+  background-image: url('${({ imageSource }) => imageSource}');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 80%;
 
   ${({ theme }) => theme.mq.desktop} {
     display: ${({ isMobile }) => (isMobile ? 'none' : 'initial')};

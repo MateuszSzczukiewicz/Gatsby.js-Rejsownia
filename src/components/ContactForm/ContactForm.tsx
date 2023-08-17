@@ -1,11 +1,9 @@
 import React from 'react';
 import { useForm } from '@formspree/react';
-import { StyledButton } from 'assets/styles/pages/homepage.styles';
-import { ContactFormWrapper } from './ContactForm.styles';
+import { ContactFormWrapper, StyledButton } from 'components/ContactForm/ContactForm.styles.ts';
 
 interface FormValues {
-  email: string;
-  message: string;
+  [key: string]: string;
 }
 
 export const ContactForm: React.FC = () => {

@@ -1,11 +1,9 @@
 import React from 'react';
 import { useForm } from '@formspree/react';
-import { StyledButton } from 'assets/styles/pages/homepage.styles';
-import { ContactFormWrapper } from 'components/CharterForm/CharterForm.styles';
+import { ContactFormWrapper, StyledButton } from 'components/CharterForm/CharterForm.styles';
 
 interface FormValues {
-  email: string;
-  message: string;
+  [key: string]: string;
 }
 
 export const CharterForm: React.FC = () => {
@@ -23,8 +21,6 @@ export const CharterForm: React.FC = () => {
       <textarea name="place" id="place" placeholder="Miejsce" />
       <label htmlFor="numberOfPeople">Liczba osób</label>
       <textarea name="numberOfPeople" id="numberOfPeople" placeholder="Liczba osób" />
-      <label htmlFor="boatLength">Wielkość łódki</label>
-      <textarea name="boatLength" id="boatLength" placeholder="Wielkość łódki" />
       <label htmlFor="boatLength">Wielkość łódki</label>
       <textarea name="boatLength" id="boatLength" placeholder="Wielkość łódki" />
       <label htmlFor="bowThruster">Ster strumieniowy</label>

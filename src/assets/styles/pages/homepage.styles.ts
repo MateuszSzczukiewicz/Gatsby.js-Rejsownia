@@ -206,7 +206,7 @@ export const ShowcaseSection = styled(StyledSection)`
   }
 `;
 
-export const StyledButton = styled.button<StyledButtonProps>`
+export const StyledOffer = styled.div<StyledButtonProps>`
   border: 1px solid ${({ theme }) => theme.color.darkBlue};
   background-color: transparent;
   font-size: ${({ theme }) => theme.font.size.button};
@@ -217,7 +217,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   display: block;
   margin: 8px 15px;
   color: black;
-  text-decoration: none;
 `;
 
 export const ShowcaseGallery = styled.div`

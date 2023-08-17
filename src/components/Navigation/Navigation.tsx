@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql, PageProps } from 'gatsby';
 import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
 import {
@@ -9,9 +9,15 @@ import {
   StyledNavigation,
   StyledSocialIcon,
   Wrapper,
-} from './Navigation.styles.tsx';
+} from './Navigation.styles.ts';
 
-export const Navigation: React.FC = () => {
+interface NavigationQuery {
+  logo: {
+    publicURL: string;
+  };
+}
+
+export const Navigation: React.FC<PageProps<NavigationQuery>> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavigation = () => {
@@ -20,16 +26,14 @@ export const Navigation: React.FC = () => {
 
   return (
     <OuterWrapper>
-      <Link to="/">{<StyledLogo isMobile isSmall />}</Link>
+      {/*<StyledLogo imageSource={data.logo.publicURL} isMobile isSmall />*/}
       <StyledBurger onClick={toggleNavigation}>
         <div />
         <div />
         <div />
       </StyledBurger>
       <Wrapper isOpen={isOpen}>
-        <Link to="/">
-          <StyledLogo />
-        </Link>
+        {/*<StyledLogo imageSource={data.logo.publicURL} />*/}
         <StyledNavigation>
           <ul>
             <li>
@@ -66,3 +70,11 @@ export const Navigation: React.FC = () => {
     </OuterWrapper>
   );
 };
+
+export const query = graphql`
+  query {
+    logo: file(relativePath: { regex: "/navigation/logo.jpg/" }) {
+      publicURL
+    }
+  }
+`;

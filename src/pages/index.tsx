@@ -13,7 +13,7 @@ import {
   OffersSection,
   StyledTitle,
   ShowcaseSection,
-  StyledButton,
+  StyledOffer,
   ShowcaseImage,
   ShowcaseGallery,
   StyledLinkButton,
@@ -99,21 +99,11 @@ const Homepage: React.FC<PageProps<PageData<ImageData>>> = ({ data }) => (
     <ShowcaseSection>
       <h2>Oferta rejsów</h2>
       <div>
-        <StyledButton as={Link} to="/rejsy/grecja" isCentered>
-          Grecja
-        </StyledButton>
-        <StyledButton as={Link} to="/rejsy/sycylia" isCentered>
-          Sycylia
-        </StyledButton>
-        <StyledButton as={Link} to="/rejsy/wyspy-kanaryjskie" isCentered>
-          Wyspy Kanaryskie
-        </StyledButton>
-        <StyledButton as={Link} to="/rejsy/karaiby" isCentered>
-          Karaiby
-        </StyledButton>
-        <StyledButton as={Link} to="/rejsy/norwegia" isCentered>
-          Norwegia
-        </StyledButton>
+        <StyledOffer isCentered>Grecja</StyledOffer>
+        <StyledOffer isCentered>Sycylia</StyledOffer>
+        <StyledOffer isCentered>Wyspy Kanaryskie</StyledOffer>
+        <StyledOffer isCentered>Karaiby</StyledOffer>
+        <StyledOffer isCentered>Norwegia</StyledOffer>
       </div>
       <ShowcaseGallery>
         <ShowcaseImage src={data.grid1.publicURL} alt="#" />

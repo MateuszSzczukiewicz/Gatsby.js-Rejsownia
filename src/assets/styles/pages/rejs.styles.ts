@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
 
-export const Address = styled.p`
+export const Place = styled.p`
   font-weight: 700;
   position: relative;
 

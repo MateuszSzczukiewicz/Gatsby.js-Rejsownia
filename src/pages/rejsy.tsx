@@ -60,7 +60,7 @@ const Staze: React.FC<StazeProps> = ({ data }) => {
 
 export const query = graphql`
   query {
-    thumbnail: file(relativePath: { regex: "/rejsy/temporary-thumbnail.jpg/" }) {
+    thumbnail: file(relativePath: { regex: "/temporary-thumbnail.jpg/" }) {
       publicURL
     }
   }
