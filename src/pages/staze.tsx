@@ -1,19 +1,41 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
 import { EmptyState, Gallery, IntroSection } from 'assets/styles/pages/rejsy.styles.ts';
 import { Thumbnail } from 'components/Thumbnail/Thumbnail';
 
-interface StazeProps {
-  data: {
-    thumbnail: {
-      publicURL: string;
-    };
+interface QueryResult {
+  staze: {
+    nodes: {
+      id: string;
+      data: string;
+      miejsce: string;
+      zdjecie: {
+        url: string;
+      }[];
+    }[];
   };
 }
 
-const Staze: React.FC<StazeProps> = ({ data }) => {
+const Staze: React.FC = () => {
+  const data: QueryResult = useStaticQuery(graphql`
+    query {
+      staze: allDatoCmsStazekafelek {
+        nodes {
+          id
+          data
+          miejsce
+          zdjecie {
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  const staze = data.staze.nodes;
+
   return (
     <ContentWrapper>
       <IntroSection>
@@ -23,95 +45,25 @@ const Staze: React.FC<StazeProps> = ({ data }) => {
           każde gusta podróżników. Wybierz rodzaj rejsu, który wzbudza Twoje zainteresowanie.
         </p>
       </IntroSection>
-      <Gallery>
-        <Thumbnail
-          imageSource={data.thumbnail.publicURL}
-          miejsce="Grecja"
-          data="01.01.2021 - 02.02.2021"
-        />
-        <Thumbnail
-          imageSource={data.thumbnail.publicURL}
-          miejsce="Sycylia"
-          data="02.02.2022 - 03.03.2022"
-        />
-        <Thumbnail
-          imageSource={data.thumbnail.publicURL}
-          miejsce="Wyspy Kanaryjskie"
-          data="03.03.2023 - 04.04.2023"
-        />
-        <Thumbnail
-          imageSource={data.thumbnail.publicURL}
-          miejsce="Karaiby"
-          data="04.04.2024 - 05.05.2024"
-        />
-        <Thumbnail
-          imageSource={data.thumbnail.publicURL}
-          miejsce="Norwegia"
-          data="05.05.2025 - 06.06.2025"
-        />
-      </Gallery>
-      <EmptyState>
-        <h2>Brak stażów i rejsów szkoleniowych</h2>
-        <h3>Już niebawem nowe staże i rejsy szkoleniowe od L.A. Yachting</h3>
-      </EmptyState>
+      {staze.length ? (
+        <Gallery>
+          {staze.map((staz) => (
+            <Thumbnail
+              key={staz.id}
+              imageSource={staz.zdjecie.url}
+              miejsce={staz.miejsce}
+              data={staz.data}
+            />
+          ))}
+        </Gallery>
+      ) : (
+        <EmptyState>
+          <h2>Brak stażów i rejsów szkoleniowych</h2>
+          <h3>Już niebawem nowe staże i rejsy szkoleniowe od L.A. Yachting</h3>
+        </EmptyState>
+      )}
     </ContentWrapper>
   );
 };
-
-export const query = graphql`
-  query {
-    thumbnail: file(relativePath: { regex: "/temporary-thumbnail.jpg/" }) {
-      publicURL
-    }
-  }
-`;
-
-// const Staze = () => {
-//   return (
-//     <ContentWrapper>
-//       <IntroSection>
-//         <HighlightedHeading>Nasza oferta stażów oraz rejsów szkoleniowych</HighlightedHeading>
-//         <p>
-//           Bezustannie przeszukujemy bogatą gamę stażów oraz rejsów szkoleniowych, gotowych zaspokoić
-//           każde gusta podróżników. Wybierz rodzaj rejsu, który wzbudza Twoje zainteresowanie.
-//         </p>
-//       </IntroSection>
-//       {staze.length ? (
-//         <Gallery>
-//           {staze.map((staze) => (
-//             <Thumbnail
-//               key={staze.id}
-//               imageSource={staze.galeria[0].file.url}
-//               address={staze.miejsce}
-//               title={staze.data}
-//             />
-//           ))}
-//         </Gallery>
-//       ) : (
-//         <EmptyState>
-//           <h2>Brak stażów i rejsów szkoleniowych</h2>
-//           <h3>Już niebawem nowe staże i rejsy szkoleniowe od L.A. Yachting</h3>
-//         </EmptyState>
-//       )}
-//     </ContentWrapper>
-//   );
-// };
-
-// export const query = graphql`
-//   query {
-//     staze: allDatoCmsAsset {
-//       nodes {
-//         id
-//         miejsce
-//         data
-//         galeria {
-//           file {
-//             url
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export default Staze;

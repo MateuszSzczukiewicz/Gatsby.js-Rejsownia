@@ -25,11 +25,16 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-datocms',
       options: {
         apiToken: process.env.GATSBY_API_TOKEN,
+        environment: 'main',
+        previewMode: false,
+        disableLiveReload: false,
+        pageSize: 500,
       },
     },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
+    'gatsby-transformer-remark',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sitemap',
     {
@@ -92,13 +97,10 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-svgr',
       options: {
-        prettier: true, // use prettier to format JS code output (default)
-        svgo: true, // use svgo to optimize SVGs (default)
+        prettier: true,
+        svgo: true,
         svgoConfig: {
-          plugins: [
-            { removeViewBox: true }, // remove viewBox when possible (default)
-            { cleanupIDs: true }, // remove unused IDs and minify remaining IDs (default)
-          ],
+          plugins: [{ removeViewBox: true }, { cleanupIDs: true }],
         },
       },
     },
