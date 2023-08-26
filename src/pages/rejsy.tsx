@@ -9,11 +9,12 @@ interface QueryResult {
   rejsy: {
     nodes: {
       id: string;
+      isstaz: boolean;
       data: string;
       miejsce: string;
       zdjecie: {
         url: string;
-      }[];
+      };
     }[];
   };
 }
@@ -21,9 +22,10 @@ interface QueryResult {
 const Turystyczne: React.FC = () => {
   const data: QueryResult = useStaticQuery(graphql`
     query {
-      rejsy: allDatoCmsTurystycznekafelek {
+      rejsy: allDatoCmsKafelek {
         nodes {
           id
+          isstaz
           data
           miejsce
           zdjecie {
@@ -34,7 +36,7 @@ const Turystyczne: React.FC = () => {
     }
   `);
 
-  const rejsy = data.rejsy.nodes;
+  const rejsy = data.rejsy.nodes.filter((rejs) => !rejs.isstaz);
 
   return (
     <ContentWrapper>

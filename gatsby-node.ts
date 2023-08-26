@@ -1,31 +1,44 @@
-// const path = require('path');
-// const slugify = require('slugify');
-//
-// exports.onPostBuild = ({ reporter }) => {
-//   reporter.info('Your Gatsby site has been built!');
-// };
-//
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions;
-//   const ofertaTemplate = path.resolve('src/templates/OfertaTemplate.jsx');
-//   const result = await graphql(`
-//       query {
-//           allContentfulOferta {
-//               nodes {
-//                   id
-//                   adres
-//               }
-//           }
-//       }
-//   `);
-//   result.data.allContentfulOferta.nodes.forEach((node) => {
-//     const slug = `/oferty/${slugify(node.adres.toLowerCase())}`;
-//     createPage({
-//       path: slug,
-//       component: ofertaTemplate,
-//       context: {
-//         id: node.id,
-//       },
-//     });
-//   });
-// };
+import { GatsbyNode } from 'gatsby';
+import path from 'path';
+import slugify from 'slugify';
+
+// interface DatoCmsKafelek {
+//   id: string;
+//   miejsce: string;
+//   data: string;
+// }
+
+const onPostBuild: GatsbyNode['onPostBuild'] = ({ reporter }) => {
+  reporter.info('Your Gatsby site has been built!');
+};
+
+const createRejsPage: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const rejsTemplate = path.resolve('src/templates/RejsTemplate.tsx');
+  const result = await graphql(`
+    query {
+      allDatoCmsKafelek {
+        nodes {
+          id
+          miejsce
+          data
+        }
+      }
+    }
+  `);
+
+  result.data.allDatoCmsKafelek.nodes.forEach((node) => {
+    const tag = `${node.miejsce} ${node.data}`;
+    const slug = `/rejsy/${slugify(tag.toLowerCase())}`;
+
+    createPage({
+      path: slug,
+      component: rejsTemplate,
+      context: {
+        id: node.id,
+      },
+    });
+  });
+};
+
+export { onPostBuild, createRejsPage };

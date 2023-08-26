@@ -9,11 +9,12 @@ interface QueryResult {
   staze: {
     nodes: {
       id: string;
+      isstaz: boolean;
       data: string;
       miejsce: string;
       zdjecie: {
         url: string;
-      }[];
+      };
     }[];
   };
 }
@@ -21,9 +22,10 @@ interface QueryResult {
 const Staze: React.FC = () => {
   const data: QueryResult = useStaticQuery(graphql`
     query {
-      staze: allDatoCmsStazekafelek {
+      staze: allDatoCmsKafelek {
         nodes {
           id
+          isstaz
           data
           miejsce
           zdjecie {
@@ -34,7 +36,7 @@ const Staze: React.FC = () => {
     }
   `);
 
-  const staze = data.staze.nodes;
+  const staze = data.staze.nodes.filter((rejs) => rejs.isstaz);
 
   return (
     <ContentWrapper>
