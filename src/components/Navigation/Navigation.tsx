@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, graphql, PageProps } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
 import {
@@ -17,7 +17,15 @@ interface NavigationQuery {
   };
 }
 
-export const Navigation: React.FC<PageProps<NavigationQuery>> = ({ data }) => {
+export const Navigation: React.FC = () => {
+  const data = useStaticQuery<NavigationQuery>(graphql`
+    query {
+      logo: file(relativePath: { regex: "/navigation/logo.jpg/" }) {
+        publicURL
+      }
+    }
+  `);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavigation = () => {
@@ -26,14 +34,14 @@ export const Navigation: React.FC<PageProps<NavigationQuery>> = ({ data }) => {
 
   return (
     <OuterWrapper>
-      {/*<StyledLogo imageSource={data.logo.publicURL} isMobile isSmall />*/}
+      <StyledLogo imageSource={data.logo.publicURL} isMobile isSmall />
       <StyledBurger onClick={toggleNavigation}>
         <div />
         <div />
         <div />
       </StyledBurger>
       <Wrapper isOpen={isOpen}>
-        {/*<StyledLogo imageSource={data.logo.publicURL} />*/}
+        <StyledLogo imageSource={data.logo.publicURL} />
         <StyledNavigation>
           <ul>
             <li>
@@ -70,11 +78,3 @@ export const Navigation: React.FC<PageProps<NavigationQuery>> = ({ data }) => {
     </OuterWrapper>
   );
 };
-
-export const query = graphql`
-  query {
-    logo: file(relativePath: { regex: "/navigation/logo.jpg/" }) {
-      publicURL
-    }
-  }
-`;

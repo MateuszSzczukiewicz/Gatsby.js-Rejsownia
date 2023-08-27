@@ -1,44 +1,63 @@
-import { GatsbyNode } from 'gatsby';
+import { Reporter, CreatePageArgs } from 'gatsby';
 import path from 'path';
 import slugify from 'slugify';
 
-// interface DatoCmsKafelek {
-//   id: string;
-//   miejsce: string;
-//   data: string;
-// }
+interface DatoCmsCruise {
+  id: string;
+  place: string;
+  date: string;
+}
 
-const onPostBuild: GatsbyNode['onPostBuild'] = ({ reporter }) => {
+interface AllDatoCmsCruiseData {
+  allDatoCmsCruise: {
+    nodes: DatoCmsCruise[];
+  };
+}
+
+export const onPostBuild = ({ reporter }: { reporter: Reporter }) => {
   reporter.info('Your Gatsby site has been built!');
 };
 
-const createRejsPage: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
+export const createPages = async ({
+  graphql,
+  actions,
+}: {
+  graphql: CreatePageArgs['graphql'];
+  actions: CreatePageArgs['actions'];
+}) => {
   const { createPage } = actions;
   const rejsTemplate = path.resolve('src/templates/RejsTemplate.tsx');
-  const result = await graphql(`
+
+  const result = await graphql<AllDatoCmsCruiseData>(`
     query {
-      allDatoCmsKafelek {
+      allDatoCmsCruise {
         nodes {
           id
-          miejsce
-          data
+          place
+          date
         }
       }
     }
   `);
 
-  result.data.allDatoCmsKafelek.nodes.forEach((node) => {
-    const tag = `${node.miejsce} ${node.data}`;
-    const slug = `/rejsy/${slugify(tag.toLowerCase())}`;
+  const createNodePages = (basePath: string) => {
+    const cruises: DatoCmsCruise[] = result.data.allDatoCmsCruise.nodes;
 
-    createPage({
-      path: slug,
-      component: rejsTemplate,
-      context: {
-        id: node.id,
-      },
+    cruises.forEach((cruise) => {
+      const { id, place, date } = cruise;
+      const tag = `${place} ${date}`;
+      const slug = `/${basePath}/${slugify(tag.toLowerCase())}`;
+
+      createPage({
+        path: slug,
+        component: rejsTemplate,
+        context: {
+          id,
+        },
+      });
     });
-  });
-};
+  };
 
-export { onPostBuild, createRejsPage };
+  createNodePages('rejsy');
+  createNodePages('staze');
+};

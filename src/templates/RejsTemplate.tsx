@@ -13,19 +13,24 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { ContactDetails } from 'components/ContactDetails/ContactDetails';
 
+interface Cruise {
+  title: string;
+  place: string;
+  date: string;
+  cost: string;
+  descriptionNode: {
+    childMarkdownRemark: {
+      html: string;
+    };
+  };
+  gallery: {
+    url: string;
+  }[];
+}
+
 interface RejsTemplateProps {
   data: {
-    rejs: {
-      tytul: string;
-      miejsce: string;
-      dataRejsu: string;
-      koszt: string;
-      kontakt: string;
-      opis: string;
-      galeria: Array<{
-        url: string;
-      }>;
-    };
+    cruise: Cruise;
   };
 }
 
@@ -35,47 +40,56 @@ const galleryOptions = {
   infiniteLoop: true,
 };
 
-const RejsTemplate: React.FC<RejsTemplateProps> = ({ data: { rejs } }) => (
-  <StyledContentWrapper>
-    <OfferTitle>
-      <Place>{rejs.miejsce}</Place>
-      <HighlightedHeading>{rejs.tytul}</HighlightedHeading>
-    </OfferTitle>
-    <Gallery>
-      <Carousel {...galleryOptions}>
-        {rejs.galeria.map((item) => (
-          <img src={item.url} key={item.url} alt="#" />
-        ))}
-      </Carousel>
-    </Gallery>
-    <OfferDescription>{rejs.opis}</OfferDescription>
-    <OfferDetailsList>
-      <li>
-        <div>
-          <p>Data rejsu:</p>
-          <p>{rejs.dataRejsu}</p>
-        </div>
-      </li>
-      <li>
-        <div>
-          <p>Koszt:</p>
-          <p>{rejs.koszt}</p>
-        </div>
-      </li>
-    </OfferDetailsList>
-    <ContactDetails />
-  </StyledContentWrapper>
-);
+const RejsTemplate: React.FC<RejsTemplateProps> = ({ data }) => {
+  const cruise = data.cruise;
+
+  return (
+    <StyledContentWrapper>
+      <OfferTitle>
+        <Place>{cruise.place}</Place>
+        <HighlightedHeading>{cruise.title}</HighlightedHeading>
+      </OfferTitle>
+      <Gallery>
+        <Carousel {...galleryOptions}>
+          {cruise.gallery.map((item) => (
+            <img src={item.url} key={item.url} alt="" />
+          ))}
+        </Carousel>
+      </Gallery>
+      <OfferDescription
+        dangerouslySetInnerHTML={{ __html: cruise.descriptionNode.childMarkdownRemark.html }}
+      />
+      <OfferDetailsList>
+        <li>
+          <div>
+            <p>Data rejsu:</p>
+            <p>{cruise.date}</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <p>Koszt:</p>
+            <p>{cruise.cost}</p>
+          </div>
+        </li>
+      </OfferDetailsList>
+      <ContactDetails />
+    </StyledContentWrapper>
+  );
+};
 
 export const query = graphql`
   query ($id: String) {
-    rejs: allDatoCmsTurystycznepodstrona(id: { eq: $id }) {
-      tytul
-      miejsce
-      dataRejsu
-      koszt
-      opis
-      galeria {
+    cruise: datoCmsCruise(id: { eq: $id }) {
+      title
+      date
+      cost
+      descriptionNode {
+        childMarkdownRemark {
+          html
+        }
+      }
+      gallery {
         url
       }
     }
@@ -83,3 +97,5 @@ export const query = graphql`
 `;
 
 export default RejsTemplate;
+
+// DatoCmsCruise-187237087

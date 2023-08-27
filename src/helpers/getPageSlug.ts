@@ -1,3 +1,3 @@
 import slugify from 'slugify';
 
-export const getPageSlug = (tag: string): string => `/rejsy/${slugify(tag.toLowerCase())}`;
+export const getPageSlug = (tag: string): string => `${slugify(tag.toLowerCase())}`;

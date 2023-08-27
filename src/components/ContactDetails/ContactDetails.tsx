@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { ContactDetailsWrapper } from './ContactDetails.styles';
 
 interface HeroQuery {
@@ -8,22 +8,24 @@ interface HeroQuery {
   };
 }
 
-export const ContactDetails: React.FC<PageProps<HeroQuery>> = ({ data }) => (
-  <ContactDetailsWrapper>
-    <img src={data.hero.publicURL} alt="Andrzej Latusek" />
-    <div>
-      <p>Kontakt:</p>
-      <p>Andrzej Latusek</p>
-      <p>andylatusek@gmail.com</p>
-      <p>+48 668 890 650</p>
-    </div>
-  </ContactDetailsWrapper>
-);
-
-export const query = graphql`
-  query {
-    hero: file(relativePath: { regex: "/kontakt/0_hero.jpg/" }) {
-      publicURL
+export const ContactDetails: React.FC = () => {
+  const data: HeroQuery = useStaticQuery(graphql`
+    query {
+      hero: file(relativePath: { regex: "/kontakt/0_hero.jpg/" }) {
+        publicURL
+      }
     }
-  }
-`;
+  `);
+
+  return (
+    <ContactDetailsWrapper>
+      <img src={data.hero.publicURL} alt="Andrzej Latusek" />
+      <div>
+        <p>Kontakt:</p>
+        <p>Andrzej Latusek</p>
+        <p>andylatusek@gmail.com</p>
+        <p>+48 668 890 650</p>
+      </div>
+    </ContactDetailsWrapper>
+  );
+};

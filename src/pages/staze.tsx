@@ -6,15 +6,15 @@ import { EmptyState, Gallery, IntroSection } from 'assets/styles/pages/rejsy.sty
 import { Thumbnail } from 'components/Thumbnail/Thumbnail';
 
 interface QueryResult {
-  staze: {
+  cruises: {
     nodes: {
       id: string;
-      isstaz: boolean;
-      data: string;
-      miejsce: string;
-      zdjecie: {
+      istraining: boolean;
+      place: string;
+      date: string;
+      gallery: {
         url: string;
-      };
+      }[];
     }[];
   };
 }
@@ -22,13 +22,13 @@ interface QueryResult {
 const Staze: React.FC = () => {
   const data: QueryResult = useStaticQuery(graphql`
     query {
-      staze: allDatoCmsKafelek {
+      cruises: allDatoCmsCruise {
         nodes {
           id
-          isstaz
-          data
-          miejsce
-          zdjecie {
+          istraining
+          place
+          date
+          gallery {
             url
           }
         }
@@ -36,7 +36,7 @@ const Staze: React.FC = () => {
     }
   `);
 
-  const staze = data.staze.nodes.filter((rejs) => rejs.isstaz);
+  const cruises = data.cruises.nodes.filter((cruise) => cruise.istraining);
 
   return (
     <ContentWrapper>
@@ -47,14 +47,14 @@ const Staze: React.FC = () => {
           każde gusta podróżników. Wybierz rodzaj rejsu, który wzbudza Twoje zainteresowanie.
         </p>
       </IntroSection>
-      {staze.length ? (
+      {cruises.length ? (
         <Gallery>
-          {staze.map((staz) => (
+          {cruises.map((cruise) => (
             <Thumbnail
-              key={staz.id}
-              imageSource={staz.zdjecie.url}
-              miejsce={staz.miejsce}
-              data={staz.data}
+              key={cruise.id}
+              imageSource={cruise.gallery[0].url}
+              place={cruise.place}
+              date={cruise.date}
             />
           ))}
         </Gallery>
