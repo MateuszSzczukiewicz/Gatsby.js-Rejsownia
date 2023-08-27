@@ -1,44 +1,48 @@
-import { GatsbyNode } from 'gatsby';
+import { GatsbyNode, Reporter } from 'gatsby';
 import path from 'path';
 import slugify from 'slugify';
 
-// interface DatoCmsKafelek {
-//   id: string;
-//   miejsce: string;
-//   data: string;
-// }
-
-const onPostBuild: GatsbyNode['onPostBuild'] = ({ reporter }) => {
+exports.onPostBuild = ({ reporter }: { reporter: Reporter }) => {
   reporter.info('Your Gatsby site has been built!');
 };
+
+interface DatoCmsCruise {
+  id: string;
+  place: string;
+  date: string;
+}
 
 const createRejsPage: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const rejsTemplate = path.resolve('src/templates/RejsTemplate.tsx');
-  const result = await graphql(`
+  const { data } = await graphql<{
+    allDatoCmsCruise?: { nodes: DatoCmsCruise[] };
+  }>(`
     query {
-      allDatoCmsKafelek {
+      allDatoCmsCruise {
         nodes {
           id
-          miejsce
-          data
+          place
+          date
         }
       }
     }
   `);
 
-  result.data.allDatoCmsKafelek.nodes.forEach((node) => {
-    const tag = `${node.miejsce} ${node.data}`;
+  const cruises = data?.allDatoCmsCruise?.nodes || [];
+
+  cruises.forEach(({ id, place, date }) => {
+    const tag = `${place} ${date}`;
     const slug = `/rejsy/${slugify(tag.toLowerCase())}`;
 
     createPage({
       path: slug,
       component: rejsTemplate,
       context: {
-        id: node.id,
+        id,
       },
     });
   });
 };
 
-export { onPostBuild, createRejsPage };
+export default createRejsPage;

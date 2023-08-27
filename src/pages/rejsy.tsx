@@ -6,15 +6,15 @@ import { EmptyState, Gallery, IntroSection } from 'assets/styles/pages/rejsy.sty
 import { Thumbnail } from 'components/Thumbnail/Thumbnail';
 
 interface QueryResult {
-  rejsy: {
+  cruises: {
     nodes: {
       id: string;
-      isstaz: boolean;
-      data: string;
-      miejsce: string;
-      zdjecie: {
+      istraining: boolean;
+      place: string;
+      date: string;
+      gallery: {
         url: string;
-      };
+      }[];
     }[];
   };
 }
@@ -22,13 +22,13 @@ interface QueryResult {
 const Turystyczne: React.FC = () => {
   const data: QueryResult = useStaticQuery(graphql`
     query {
-      rejsy: allDatoCmsKafelek {
+      cruises: allDatoCmsCruise {
         nodes {
           id
-          isstaz
-          data
-          miejsce
-          zdjecie {
+          istraining
+          place
+          date
+          gallery {
             url
           }
         }
@@ -36,7 +36,7 @@ const Turystyczne: React.FC = () => {
     }
   `);
 
-  const rejsy = data.rejsy.nodes.filter((rejs) => !rejs.isstaz);
+  const cruises = data.cruises.nodes.filter((cruise) => !cruise.istraining);
 
   return (
     <ContentWrapper>
@@ -47,14 +47,14 @@ const Turystyczne: React.FC = () => {
           podróżników. Wybierz rodzaj rejsu, który wzbudza Twoje zainteresowanie.
         </p>
       </IntroSection>
-      {rejsy.length ? (
+      {cruises.length ? (
         <Gallery>
-          {rejsy.map((rejs) => (
+          {cruises.map((cruise) => (
             <Thumbnail
-              key={rejs.id}
-              imageSource={rejs.zdjecie.url}
-              miejsce={rejs.miejsce}
-              data={rejs.data}
+              key={cruise.id}
+              imageSource={cruise.gallery[0].url}
+              place={cruise.place}
+              date={cruise.date}
             />
           ))}
         </Gallery>

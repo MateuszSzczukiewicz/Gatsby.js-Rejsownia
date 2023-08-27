@@ -1,7 +1,6 @@
 import React from 'react';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles.ts';
 import { CharterForm } from 'components/CharterForm/CharterForm.tsx';
-import {} from 'assets/styles/pages/czarter.styles.ts';
 import { IntroSection } from 'assets/styles/pages/rejsy.styles.ts';
 import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading.tsx';
 
