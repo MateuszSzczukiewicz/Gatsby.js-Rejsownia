@@ -7,7 +7,9 @@ interface FormValues {
 }
 
 export const CharterForm: React.FC = () => {
-  const [state, handleSubmit] = useForm<FormValues>('moqrgkon');
+  const charterFormKey = process.env.GATSBY_CHARTER_FORM || '';
+
+  const [state, handleSubmit] = useForm<FormValues>(charterFormKey);
 
   return (
     <ContactFormWrapper onSubmit={handleSubmit}>
@@ -42,7 +44,7 @@ export const CharterForm: React.FC = () => {
       <textarea name="boatModel" id="boatModel" placeholder="Marka i model łódki" />
       <label htmlFor="yearOfProduction">Rok produkcji</label>
       <textarea name="yearOfProduction" id="yearOfProduction" placeholder="Rok produkcji" />
-
+      {state.succeeded ? <p>Dziękujemy za wiadomość!</p> : null}
       <StyledButton type="submit" disabled={state.submitting}>
         Wyślij
       </StyledButton>

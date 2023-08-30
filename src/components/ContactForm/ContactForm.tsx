@@ -7,7 +7,9 @@ interface FormValues {
 }
 
 export const ContactForm: React.FC = () => {
-  const [state, handleSubmit] = useForm<FormValues>('moqrgkon');
+  const contactFormKey = process.env.GATSBY_CONTACT_FORM || '';
+
+  const [state, handleSubmit] = useForm<FormValues>(contactFormKey);
 
   return (
     <ContactFormWrapper onSubmit={handleSubmit}>
@@ -17,14 +19,14 @@ export const ContactForm: React.FC = () => {
       <label htmlFor="message">Treść</label>
       <textarea name="message" id="message" placeholder="Wiadomość" />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
-      {/*{state.errors.length*/}
+      {/*{state.errors*/}
       {/*  ? state.errors.map((e: FieldErrors) => (*/}
       {/*      <p key={e.message}>*/}
       {/*        {e.code === 'EMPTY' && 'Uzupełnij pola przed wysłaniem wiadomości'}*/}
       {/*      </p>*/}
       {/*    ))*/}
       {/*  : null}*/}
-      {/*{state.succeeded ? <p>Dziękujemy za wiadomość!</p> : null}*/}
+      {state.succeeded ? <p>Dziękujemy za wiadomość!</p> : null}
       <StyledButton type="submit" disabled={state.submitting}>
         Wyślij
       </StyledButton>
