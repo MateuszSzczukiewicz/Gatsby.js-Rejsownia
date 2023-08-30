@@ -79,7 +79,7 @@ const RejsTemplate: React.FC<RejsTemplateProps> = ({ data }) => {
 };
 
 export const query = graphql`
-  query ($id: String) {
+  query SubPageQuery($id: String) {
     cruise: datoCmsCruise(id: { eq: $id }) {
       title
       date

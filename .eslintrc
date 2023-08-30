@@ -67,7 +67,7 @@
       "files": [
         "gatsby-browser.tsx",
         "gatsby-ssr.tsx",
-        "global.d.ts",
+        "gatsby-node.ts",
         "*.styles.*"
       ],
       "rules": {

@@ -1,4 +1,4 @@
-import { Reporter, CreatePageArgs } from 'gatsby';
+import { GatsbyNode } from 'gatsby';
 import path from 'path';
 import slugify from 'slugify';
 
@@ -14,22 +14,16 @@ interface AllDatoCmsCruiseData {
   };
 }
 
-export const onPostBuild = ({ reporter }: { reporter: Reporter }) => {
+export const onPostBuild: GatsbyNode['onPostBuild'] = async ({ reporter }) => {
   reporter.info('Your Gatsby site has been built!');
 };
 
-export const createPages = async ({
-  graphql,
-  actions,
-}: {
-  graphql: CreatePageArgs['graphql'];
-  actions: CreatePageArgs['actions'];
-}) => {
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const rejsTemplate = path.resolve('src/templates/RejsTemplate.tsx');
 
   const result = await graphql<AllDatoCmsCruiseData>(`
-    query {
+    query ResultQuery {
       allDatoCmsCruise {
         nodes {
           id
@@ -41,7 +35,7 @@ export const createPages = async ({
   `);
 
   const createNodePages = (basePath: string) => {
-    const cruises: DatoCmsCruise[] = result.data.allDatoCmsCruise.nodes;
+    const cruises: DatoCmsCruise[] = result.data?.allDatoCmsCruise.nodes || [];
 
     cruises.forEach((cruise) => {
       const { id, place, date } = cruise;

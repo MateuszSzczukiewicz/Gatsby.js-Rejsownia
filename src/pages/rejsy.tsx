@@ -1,41 +1,29 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
 import { EmptyState, Gallery, IntroSection } from 'assets/styles/pages/rejsy.styles.ts';
 import { Thumbnail } from 'components/Thumbnail/Thumbnail';
 
-interface QueryResult {
-  cruises: {
-    nodes: {
-      id: string;
-      istraining: boolean;
-      place: string;
-      date: string;
-      gallery: {
-        url: string;
-      }[];
-    }[];
+interface Cruise {
+  id: string;
+  istraining: boolean;
+  place: string;
+  date: string;
+  gallery: {
+    url: string;
+  }[];
+}
+
+interface PageProps {
+  data: {
+    cruises: {
+      nodes: Cruise[];
+    };
   };
 }
 
-const Turystyczne: React.FC = () => {
-  const data: QueryResult = useStaticQuery(graphql`
-    query {
-      cruises: allDatoCmsCruise {
-        nodes {
-          id
-          istraining
-          place
-          date
-          gallery {
-            url
-          }
-        }
-      }
-    }
-  `);
-
+export const Turystyczne: React.FC<PageProps> = ({ data }) => {
   const cruises = data.cruises.nodes.filter((cruise) => !cruise.istraining);
 
   return (
@@ -67,5 +55,21 @@ const Turystyczne: React.FC = () => {
     </ContentWrapper>
   );
 };
+
+export const query = graphql`
+  query CruiseQuery {
+    cruises: allDatoCmsCruise {
+      nodes {
+        id
+        istraining
+        place
+        date
+        gallery {
+          url
+        }
+      }
+    }
+  }
+`;
 
 export default Turystyczne;

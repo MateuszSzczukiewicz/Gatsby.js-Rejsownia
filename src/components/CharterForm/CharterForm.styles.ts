@@ -15,7 +15,7 @@ export const ContactFormWrapper = styled.form`
   label {
     font-family: ${({ theme }) => theme.font.family.montserrat};
     font-weight: 500;
-    margin: 15px 0 0;
+    margin: 15px 5px 0;
   }
 
   input,

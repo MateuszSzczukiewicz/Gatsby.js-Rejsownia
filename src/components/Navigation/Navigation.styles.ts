@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { StyledIcon } from '../StyledIcon/StyledIcon';
+import { Link } from 'gatsby';
 
 interface OuterWrapperProps {
   isOpen: boolean;
@@ -7,7 +8,6 @@ interface OuterWrapperProps {
 
 interface StyledLogoProps {
   imageSource: string;
-  isSmall?: boolean;
   isMobile?: boolean;
 }
 
@@ -70,8 +70,9 @@ export const Wrapper = styled.div<OuterWrapperProps>`
   }
 `;
 
-export const StyledLogo = styled.div<StyledLogoProps>`
-  width: ${({ isSmall }) => (isSmall ? '60px' : '100px')};
+export const StyledLogo = styled(Link)<StyledLogoProps>`
+  width: 100px;
+  height: 70px;
   display: initial;
   position: relative;
   background-image: url('${({ imageSource }) => imageSource}');

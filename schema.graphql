@@ -9,7 +9,7 @@ directive @childOf(
     "A list of mime-types this type is a child of. Usually these are the mime-types handled by a transformer plugin."
     mimeTypes: [String!]! = [],
     "A list of types this type is a child of. Usually these are the types handled by a transformer plugin."
-    types: [String!]! = []
+    types: [String!]! = ["DatoCmsTextNode"]
 ) on OBJECT
 
 "Add date formatting options."
@@ -200,6 +200,57 @@ type DatoCmsColorField {
     hex: String
     red: Int
     rgb: String
+}
+
+type DatoCmsCruise implements Node {
+    children: [Node!]!
+    cost: String
+    date: String
+    description: String
+    descriptionNode: DatoCmsTextNode
+    gallery: [DatoCmsFileField!]
+    id: ID!
+    internal: Internal!
+    istraining: Boolean
+    meta: DatoCmsMetaField!
+    model: DatoCmsModel
+    originalId: String!
+    parent: Node
+    place: String
+    seoMetaTags: DatoCmsSeoMetaTags
+    title: String
+}
+
+type DatoCmsCruiseConnection {
+    distinct(field: DatoCmsCruiseFieldSelector!): [String!]!
+    edges: [DatoCmsCruiseEdge!]!
+    group(field: DatoCmsCruiseFieldSelector!, limit: Int, skip: Int): [DatoCmsCruiseGroupConnection!]!
+    max(field: DatoCmsCruiseFieldSelector!): Float
+    min(field: DatoCmsCruiseFieldSelector!): Float
+    nodes: [DatoCmsCruise!]!
+    pageInfo: PageInfo!
+    sum(field: DatoCmsCruiseFieldSelector!): Float
+    totalCount: Int!
+}
+
+type DatoCmsCruiseEdge {
+    next: DatoCmsCruise
+    node: DatoCmsCruise!
+    previous: DatoCmsCruise
+}
+
+type DatoCmsCruiseGroupConnection {
+    distinct(field: DatoCmsCruiseFieldSelector!): [String!]!
+    edges: [DatoCmsCruiseEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: DatoCmsCruiseFieldSelector!, limit: Int, skip: Int): [DatoCmsCruiseGroupConnection!]!
+    max(field: DatoCmsCruiseFieldSelector!): Float
+    min(field: DatoCmsCruiseFieldSelector!): Float
+    nodes: [DatoCmsCruise!]!
+    pageInfo: PageInfo!
+    sum(field: DatoCmsCruiseFieldSelector!): Float
+    totalCount: Int!
 }
 
 type DatoCmsFaviconMetaTags {
@@ -550,7 +601,11 @@ type DatoCmsSiteGroupConnection {
 }
 
 type DatoCmsTextNode implements Node {
+    "Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node"
+    childMarkdownRemark: MarkdownRemark
     children: [Node!]!
+    "Returns all children nodes filtered by type MarkdownRemark"
+    childrenMarkdownRemark: [MarkdownRemark]
     id: ID!
     internal: Internal!
     parent: Node
@@ -1079,6 +1134,71 @@ type Internal {
     type: String!
 }
 
+type MarkdownHeading {
+    depth: Int
+    id: String
+    value: String
+}
+
+type MarkdownRemark implements Node {
+    children: [Node!]!
+    excerpt(format: MarkdownExcerptFormats = PLAIN, pruneLength: Int = 140, truncate: Boolean = false): String
+    excerptAst(pruneLength: Int = 140, truncate: Boolean = false): JSON
+    frontmatter: MarkdownRemarkFrontmatter
+    headings(depth: MarkdownHeadingLevels): [MarkdownHeading]
+    html: String
+    htmlAst: JSON
+    id: ID!
+    internal: Internal!
+    parent: Node
+    rawMarkdownBody: String
+    tableOfContents(absolute: Boolean = false, heading: String, maxDepth: Int, pathToSlugField: String = ""): String
+    timeToRead: Int
+    wordCount: MarkdownWordCount
+}
+
+type MarkdownRemarkConnection {
+    distinct(field: MarkdownRemarkFieldSelector!): [String!]!
+    edges: [MarkdownRemarkEdge!]!
+    group(field: MarkdownRemarkFieldSelector!, limit: Int, skip: Int): [MarkdownRemarkGroupConnection!]!
+    max(field: MarkdownRemarkFieldSelector!): Float
+    min(field: MarkdownRemarkFieldSelector!): Float
+    nodes: [MarkdownRemark!]!
+    pageInfo: PageInfo!
+    sum(field: MarkdownRemarkFieldSelector!): Float
+    totalCount: Int!
+}
+
+type MarkdownRemarkEdge {
+    next: MarkdownRemark
+    node: MarkdownRemark!
+    previous: MarkdownRemark
+}
+
+type MarkdownRemarkFrontmatter {
+    title: String
+}
+
+type MarkdownRemarkGroupConnection {
+    distinct(field: MarkdownRemarkFieldSelector!): [String!]!
+    edges: [MarkdownRemarkEdge!]!
+    field: String!
+    fieldValue: String
+    group(field: MarkdownRemarkFieldSelector!, limit: Int, skip: Int): [MarkdownRemarkGroupConnection!]!
+    max(field: MarkdownRemarkFieldSelector!): Float
+    min(field: MarkdownRemarkFieldSelector!): Float
+    nodes: [MarkdownRemark!]!
+    pageInfo: PageInfo!
+    sum(field: MarkdownRemarkFieldSelector!): Float
+    totalCount: Int!
+}
+
+type MarkdownWordCount {
+    paragraphs: Int
+    sentences: Int
+    words: Int
+}
+
 type PageInfo {
     currentPage: Int!
     hasNextPage: Boolean!
@@ -1091,6 +1211,7 @@ type PageInfo {
 
 type Query {
     allDatoCmsAsset(fallbackLocales: [String!], filter: DatoCmsAssetFilterInput, limit: Int, locale: String, skip: Int, sort: [DatoCmsAssetSortInput]): DatoCmsAssetConnection!
+    allDatoCmsCruise(fallbackLocales: [String!], filter: DatoCmsCruiseFilterInput, limit: Int, locale: String, skip: Int, sort: [DatoCmsCruiseSortInput]): DatoCmsCruiseConnection!
     allDatoCmsField(fallbackLocales: [String!], filter: DatoCmsFieldFilterInput, limit: Int, locale: String, skip: Int, sort: [DatoCmsFieldSortInput]): DatoCmsFieldConnection!
     allDatoCmsModel(fallbackLocales: [String!], filter: DatoCmsModelFilterInput, limit: Int, locale: String, skip: Int, sort: [DatoCmsModelSortInput]): DatoCmsModelConnection!
     allDatoCmsSite(fallbackLocales: [String!], filter: DatoCmsSiteFilterInput, limit: Int, locale: String, skip: Int, sort: [DatoCmsSiteSortInput]): DatoCmsSiteConnection!
@@ -1098,19 +1219,22 @@ type Query {
     allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: [DirectorySortInput]): DirectoryConnection!
     allFile(filter: FileFilterInput, limit: Int, skip: Int, sort: [FileSortInput]): FileConnection!
     allImageSharp(filter: ImageSharpFilterInput, limit: Int, skip: Int, sort: [ImageSharpSortInput]): ImageSharpConnection!
+    allMarkdownRemark(filter: MarkdownRemarkFilterInput, limit: Int, skip: Int, sort: [MarkdownRemarkSortInput]): MarkdownRemarkConnection!
     allSite(filter: SiteFilterInput, limit: Int, skip: Int, sort: [SiteSortInput]): SiteConnection!
     allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: [SiteBuildMetadataSortInput]): SiteBuildMetadataConnection!
     allSiteFunction(filter: SiteFunctionFilterInput, limit: Int, skip: Int, sort: [SiteFunctionSortInput]): SiteFunctionConnection!
     allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: [SitePageSortInput]): SitePageConnection!
     allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: [SitePluginSortInput]): SitePluginConnection!
     datoCmsAsset(author: StringQueryOperatorInput, basename: StringQueryOperatorInput, blurhash: StringQueryOperatorInput, children: NodeFilterListInput, colors: DatoCmsColorFieldFilterListInput, copyright: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, exifInfo: JSONQueryOperatorInput, fallbackLocales: [String!], filename: StringQueryOperatorInput, fixed: DatoCmsFixedFilterInput, fluid: DatoCmsFluidFilterInput, format: StringQueryOperatorInput, gatsbyImageData: JSONQueryOperatorInput, height: IntQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, isImage: BooleanQueryOperatorInput, locale: String, mimeType: StringQueryOperatorInput, notes: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, resolutions: DatoCmsFixedFilterInput, size: IntQueryOperatorInput, sizes: DatoCmsFluidFilterInput, smartTags: StringQueryOperatorInput, tags: StringQueryOperatorInput, url: StringQueryOperatorInput, video: DatoCmsAssetVideoFilterInput, width: IntQueryOperatorInput): DatoCmsAsset
+    datoCmsCruise(children: NodeFilterListInput, cost: StringQueryOperatorInput, date: StringQueryOperatorInput, description: StringQueryOperatorInput, descriptionNode: DatoCmsTextNodeFilterInput, fallbackLocales: [String!], gallery: DatoCmsFileFieldFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, istraining: BooleanQueryOperatorInput, locale: String, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, place: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, title: StringQueryOperatorInput): DatoCmsCruise
     datoCmsField(apiKey: StringQueryOperatorInput, appeareance: JSONQueryOperatorInput, children: NodeFilterListInput, defaultValue: JSONQueryOperatorInput, fallbackLocales: [String!], fieldType: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, label: StringQueryOperatorInput, locale: String, localized: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, position: IntQueryOperatorInput, validators: JSONQueryOperatorInput): DatoCmsField
     datoCmsModel(allLocalesRequired: BooleanQueryOperatorInput, apiKey: StringQueryOperatorInput, children: NodeFilterListInput, collectionAppeareance: StringQueryOperatorInput, draftModeActive: BooleanQueryOperatorInput, fallbackLocales: [String!], fields: DatoCmsFieldFilterListInput, hasSingletonItem: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: String, modularBlock: BooleanQueryOperatorInput, name: StringQueryOperatorInput, orderingDirection: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, singleton: BooleanQueryOperatorInput, sortable: BooleanQueryOperatorInput, tree: BooleanQueryOperatorInput): DatoCmsModel
     datoCmsSite(children: NodeFilterListInput, domain: StringQueryOperatorInput, fallbackLocales: [String!], faviconMetaTags: DatoCmsFaviconMetaTagsFilterInput, globalSeo: DatoCmsGlobalSeoFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalDomain: StringQueryOperatorInput, locale: String, locales: StringQueryOperatorInput, name: StringQueryOperatorInput, noIndex: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput): DatoCmsSite
-    datoCmsTextNode(children: NodeFilterListInput, fallbackLocales: [String!], id: StringQueryOperatorInput, internal: InternalFilterInput, locale: String, parent: NodeFilterInput): DatoCmsTextNode
+    datoCmsTextNode(childMarkdownRemark: MarkdownRemarkFilterInput, children: NodeFilterListInput, childrenMarkdownRemark: MarkdownRemarkFilterListInput, fallbackLocales: [String!], id: StringQueryOperatorInput, internal: InternalFilterInput, locale: String, parent: NodeFilterInput): DatoCmsTextNode
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
     file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childImageSharp: ImageSharpFilterInput, children: NodeFilterListInput, childrenImageSharp: ImageSharpFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
     imageSharp(children: NodeFilterListInput, fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, original: ImageSharpOriginalFilterInput, parent: NodeFilterInput, resize: ImageSharpResizeFilterInput): ImageSharp
+    markdownRemark(children: NodeFilterListInput, excerpt: StringQueryOperatorInput, excerptAst: JSONQueryOperatorInput, frontmatter: MarkdownRemarkFrontmatterFilterInput, headings: MarkdownHeadingFilterListInput, html: StringQueryOperatorInput, htmlAst: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, rawMarkdownBody: StringQueryOperatorInput, tableOfContents: StringQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MarkdownWordCountFilterInput): MarkdownRemark
     site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, graphqlTypegen: SiteGraphqlTypegenFilterInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, jsxRuntime: StringQueryOperatorInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, trailingSlash: StringQueryOperatorInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
     siteFunction(absoluteCompiledFilePath: StringQueryOperatorInput, children: NodeFilterListInput, functionRoute: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, matchPath: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, parent: NodeFilterInput, pluginName: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput): SiteFunction
@@ -1465,6 +1589,21 @@ enum ImagePlaceholder {
     TRACED_SVG
 }
 
+enum MarkdownExcerptFormats {
+    HTML
+    MARKDOWN
+    PLAIN
+}
+
+enum MarkdownHeadingLevels {
+    h1
+    h2
+    h3
+    h4
+    h5
+    h6
+}
+
 enum PotraceTurnPolicy {
     TURNPOLICY_BLACK
     TURNPOLICY_LEFT
@@ -1675,6 +1814,63 @@ input DatoCmsColorFieldSortInput {
     rgb: SortOrderEnum
 }
 
+input DatoCmsCruiseFieldSelector {
+    children: NodeFieldSelector
+    cost: FieldSelectorEnum
+    date: FieldSelectorEnum
+    description: FieldSelectorEnum
+    descriptionNode: DatoCmsTextNodeFieldSelector
+    gallery: DatoCmsFileFieldFieldSelector
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    istraining: FieldSelectorEnum
+    meta: DatoCmsMetaFieldFieldSelector
+    model: DatoCmsModelFieldSelector
+    originalId: FieldSelectorEnum
+    parent: NodeFieldSelector
+    place: FieldSelectorEnum
+    seoMetaTags: DatoCmsSeoMetaTagsFieldSelector
+    title: FieldSelectorEnum
+}
+
+input DatoCmsCruiseFilterInput {
+    children: NodeFilterListInput
+    cost: StringQueryOperatorInput
+    date: StringQueryOperatorInput
+    description: StringQueryOperatorInput
+    descriptionNode: DatoCmsTextNodeFilterInput
+    gallery: DatoCmsFileFieldFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    istraining: BooleanQueryOperatorInput
+    meta: DatoCmsMetaFieldFilterInput
+    model: DatoCmsModelFilterInput
+    originalId: StringQueryOperatorInput
+    parent: NodeFilterInput
+    place: StringQueryOperatorInput
+    seoMetaTags: DatoCmsSeoMetaTagsFilterInput
+    title: StringQueryOperatorInput
+}
+
+input DatoCmsCruiseSortInput {
+    children: NodeSortInput
+    cost: SortOrderEnum
+    date: SortOrderEnum
+    description: SortOrderEnum
+    descriptionNode: DatoCmsTextNodeSortInput
+    gallery: DatoCmsFileFieldSortInput
+    id: SortOrderEnum
+    internal: InternalSortInput
+    istraining: SortOrderEnum
+    meta: DatoCmsMetaFieldSortInput
+    model: DatoCmsModelSortInput
+    originalId: SortOrderEnum
+    parent: NodeSortInput
+    place: SortOrderEnum
+    seoMetaTags: DatoCmsSeoMetaTagsSortInput
+    title: SortOrderEnum
+}
+
 input DatoCmsFaviconMetaTagsFieldSelector {
     tags: FieldSelectorEnum
 }
@@ -1737,6 +1933,109 @@ input DatoCmsFieldSortInput {
     parent: NodeSortInput
     position: SortOrderEnum
     validators: SortOrderEnum
+}
+
+input DatoCmsFileFieldFieldSelector {
+    alt: FieldSelectorEnum
+    author: FieldSelectorEnum
+    basename: FieldSelectorEnum
+    blurhash: FieldSelectorEnum
+    colors: DatoCmsColorFieldFieldSelector
+    copyright: FieldSelectorEnum
+    createdAt: FieldSelectorEnum
+    customData: FieldSelectorEnum
+    exifInfo: FieldSelectorEnum
+    filename: FieldSelectorEnum
+    fixed: DatoCmsFixedFieldSelector
+    fluid: DatoCmsFluidFieldSelector
+    focalPoint: DatoCmsFocalPointFieldSelector
+    format: FieldSelectorEnum
+    gatsbyImageData: FieldSelectorEnum
+    height: FieldSelectorEnum
+    isImage: FieldSelectorEnum
+    mimeType: FieldSelectorEnum
+    notes: FieldSelectorEnum
+    originalId: FieldSelectorEnum
+    path: FieldSelectorEnum
+    resolutions: DatoCmsFixedFieldSelector
+    size: FieldSelectorEnum
+    sizes: DatoCmsFluidFieldSelector
+    smartTags: FieldSelectorEnum
+    tags: FieldSelectorEnum
+    title: FieldSelectorEnum
+    url: FieldSelectorEnum
+    video: DatoCmsAssetVideoFieldSelector
+    width: FieldSelectorEnum
+}
+
+input DatoCmsFileFieldFilterInput {
+    alt: StringQueryOperatorInput
+    author: StringQueryOperatorInput
+    basename: StringQueryOperatorInput
+    blurhash: StringQueryOperatorInput
+    colors: DatoCmsColorFieldFilterListInput
+    copyright: StringQueryOperatorInput
+    createdAt: DateQueryOperatorInput
+    customData: JSONQueryOperatorInput
+    exifInfo: JSONQueryOperatorInput
+    filename: StringQueryOperatorInput
+    fixed: DatoCmsFixedFilterInput
+    fluid: DatoCmsFluidFilterInput
+    focalPoint: DatoCmsFocalPointFilterInput
+    format: StringQueryOperatorInput
+    gatsbyImageData: JSONQueryOperatorInput
+    height: IntQueryOperatorInput
+    isImage: BooleanQueryOperatorInput
+    mimeType: StringQueryOperatorInput
+    notes: StringQueryOperatorInput
+    originalId: StringQueryOperatorInput
+    path: StringQueryOperatorInput
+    resolutions: DatoCmsFixedFilterInput
+    size: IntQueryOperatorInput
+    sizes: DatoCmsFluidFilterInput
+    smartTags: StringQueryOperatorInput
+    tags: StringQueryOperatorInput
+    title: StringQueryOperatorInput
+    url: StringQueryOperatorInput
+    video: DatoCmsAssetVideoFilterInput
+    width: IntQueryOperatorInput
+}
+
+input DatoCmsFileFieldFilterListInput {
+    elemMatch: DatoCmsFileFieldFilterInput
+}
+
+input DatoCmsFileFieldSortInput {
+    alt: SortOrderEnum
+    author: SortOrderEnum
+    basename: SortOrderEnum
+    blurhash: SortOrderEnum
+    colors: DatoCmsColorFieldSortInput
+    copyright: SortOrderEnum
+    createdAt: SortOrderEnum
+    customData: SortOrderEnum
+    exifInfo: SortOrderEnum
+    filename: SortOrderEnum
+    fixed: DatoCmsFixedSortInput
+    fluid: DatoCmsFluidSortInput
+    focalPoint: DatoCmsFocalPointSortInput
+    format: SortOrderEnum
+    gatsbyImageData: SortOrderEnum
+    height: SortOrderEnum
+    isImage: SortOrderEnum
+    mimeType: SortOrderEnum
+    notes: SortOrderEnum
+    originalId: SortOrderEnum
+    path: SortOrderEnum
+    resolutions: DatoCmsFixedSortInput
+    size: SortOrderEnum
+    sizes: DatoCmsFluidSortInput
+    smartTags: SortOrderEnum
+    tags: SortOrderEnum
+    title: SortOrderEnum
+    url: SortOrderEnum
+    video: DatoCmsAssetVideoSortInput
+    width: SortOrderEnum
 }
 
 input DatoCmsFixedFieldSelector {
@@ -1803,6 +2102,21 @@ input DatoCmsFluidSortInput {
     srcSet: SortOrderEnum
     tracedSVG: SortOrderEnum
     width: SortOrderEnum
+}
+
+input DatoCmsFocalPointFieldSelector {
+    x: FieldSelectorEnum
+    y: FieldSelectorEnum
+}
+
+input DatoCmsFocalPointFilterInput {
+    x: FloatQueryOperatorInput
+    y: FloatQueryOperatorInput
+}
+
+input DatoCmsFocalPointSortInput {
+    x: SortOrderEnum
+    y: SortOrderEnum
 }
 
 input DatoCmsGlobalSeoFieldSelector {
@@ -2110,6 +2424,33 @@ input DatoCmsImgixParams {
     w: String
 }
 
+input DatoCmsMetaFieldFieldSelector {
+    createdAt: FieldSelectorEnum
+    firstPublishedAt: FieldSelectorEnum
+    isValid: FieldSelectorEnum
+    publishedAt: FieldSelectorEnum
+    status: FieldSelectorEnum
+    updatedAt: FieldSelectorEnum
+}
+
+input DatoCmsMetaFieldFilterInput {
+    createdAt: DateQueryOperatorInput
+    firstPublishedAt: DateQueryOperatorInput
+    isValid: BooleanQueryOperatorInput
+    publishedAt: DateQueryOperatorInput
+    status: StringQueryOperatorInput
+    updatedAt: DateQueryOperatorInput
+}
+
+input DatoCmsMetaFieldSortInput {
+    createdAt: SortOrderEnum
+    firstPublishedAt: SortOrderEnum
+    isValid: SortOrderEnum
+    publishedAt: SortOrderEnum
+    status: SortOrderEnum
+    updatedAt: SortOrderEnum
+}
+
 input DatoCmsModelFieldSelector {
     allLocalesRequired: FieldSelectorEnum
     apiKey: FieldSelectorEnum
@@ -2191,6 +2532,18 @@ input DatoCmsSeoFieldSortInput {
     twitterCard: SortOrderEnum
 }
 
+input DatoCmsSeoMetaTagsFieldSelector {
+    tags: FieldSelectorEnum
+}
+
+input DatoCmsSeoMetaTagsFilterInput {
+    tags: JSONQueryOperatorInput
+}
+
+input DatoCmsSeoMetaTagsSortInput {
+    tags: SortOrderEnum
+}
+
 input DatoCmsSiteFieldSelector {
     children: NodeFieldSelector
     domain: FieldSelectorEnum
@@ -2237,21 +2590,27 @@ input DatoCmsSiteSortInput {
 }
 
 input DatoCmsTextNodeFieldSelector {
+    childMarkdownRemark: MarkdownRemarkFieldSelector
     children: NodeFieldSelector
+    childrenMarkdownRemark: MarkdownRemarkFieldSelector
     id: FieldSelectorEnum
     internal: InternalFieldSelector
     parent: NodeFieldSelector
 }
 
 input DatoCmsTextNodeFilterInput {
+    childMarkdownRemark: MarkdownRemarkFilterInput
     children: NodeFilterListInput
+    childrenMarkdownRemark: MarkdownRemarkFilterListInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     parent: NodeFilterInput
 }
 
 input DatoCmsTextNodeSortInput {
+    childMarkdownRemark: MarkdownRemarkSortInput
     children: NodeSortInput
+    childrenMarkdownRemark: MarkdownRemarkSortInput
     id: SortOrderEnum
     internal: InternalSortInput
     parent: NodeSortInput
@@ -2752,6 +3111,113 @@ input JSONQueryOperatorInput {
     ne: JSON
     nin: [JSON]
     regex: JSON
+}
+
+input MarkdownHeadingFieldSelector {
+    depth: FieldSelectorEnum
+    id: FieldSelectorEnum
+    value: FieldSelectorEnum
+}
+
+input MarkdownHeadingFilterInput {
+    depth: IntQueryOperatorInput
+    id: StringQueryOperatorInput
+    value: StringQueryOperatorInput
+}
+
+input MarkdownHeadingFilterListInput {
+    elemMatch: MarkdownHeadingFilterInput
+}
+
+input MarkdownHeadingSortInput {
+    depth: SortOrderEnum
+    id: SortOrderEnum
+    value: SortOrderEnum
+}
+
+input MarkdownRemarkFieldSelector {
+    children: NodeFieldSelector
+    excerpt: FieldSelectorEnum
+    excerptAst: FieldSelectorEnum
+    frontmatter: MarkdownRemarkFrontmatterFieldSelector
+    headings: MarkdownHeadingFieldSelector
+    html: FieldSelectorEnum
+    htmlAst: FieldSelectorEnum
+    id: FieldSelectorEnum
+    internal: InternalFieldSelector
+    parent: NodeFieldSelector
+    rawMarkdownBody: FieldSelectorEnum
+    tableOfContents: FieldSelectorEnum
+    timeToRead: FieldSelectorEnum
+    wordCount: MarkdownWordCountFieldSelector
+}
+
+input MarkdownRemarkFilterInput {
+    children: NodeFilterListInput
+    excerpt: StringQueryOperatorInput
+    excerptAst: JSONQueryOperatorInput
+    frontmatter: MarkdownRemarkFrontmatterFilterInput
+    headings: MarkdownHeadingFilterListInput
+    html: StringQueryOperatorInput
+    htmlAst: JSONQueryOperatorInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    parent: NodeFilterInput
+    rawMarkdownBody: StringQueryOperatorInput
+    tableOfContents: StringQueryOperatorInput
+    timeToRead: IntQueryOperatorInput
+    wordCount: MarkdownWordCountFilterInput
+}
+
+input MarkdownRemarkFilterListInput {
+    elemMatch: MarkdownRemarkFilterInput
+}
+
+input MarkdownRemarkFrontmatterFieldSelector {
+    title: FieldSelectorEnum
+}
+
+input MarkdownRemarkFrontmatterFilterInput {
+    title: StringQueryOperatorInput
+}
+
+input MarkdownRemarkFrontmatterSortInput {
+    title: SortOrderEnum
+}
+
+input MarkdownRemarkSortInput {
+    children: NodeSortInput
+    excerpt: SortOrderEnum
+    excerptAst: SortOrderEnum
+    frontmatter: MarkdownRemarkFrontmatterSortInput
+    headings: MarkdownHeadingSortInput
+    html: SortOrderEnum
+    htmlAst: SortOrderEnum
+    id: SortOrderEnum
+    internal: InternalSortInput
+    parent: NodeSortInput
+    rawMarkdownBody: SortOrderEnum
+    tableOfContents: SortOrderEnum
+    timeToRead: SortOrderEnum
+    wordCount: MarkdownWordCountSortInput
+}
+
+input MarkdownWordCountFieldSelector {
+    paragraphs: FieldSelectorEnum
+    sentences: FieldSelectorEnum
+    words: FieldSelectorEnum
+}
+
+input MarkdownWordCountFilterInput {
+    paragraphs: IntQueryOperatorInput
+    sentences: IntQueryOperatorInput
+    words: IntQueryOperatorInput
+}
+
+input MarkdownWordCountSortInput {
+    paragraphs: SortOrderEnum
+    sentences: SortOrderEnum
+    words: SortOrderEnum
 }
 
 input NodeFieldSelector {

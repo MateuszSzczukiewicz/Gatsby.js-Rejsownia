@@ -34,14 +34,14 @@ export const Navigation: React.FC = () => {
 
   return (
     <OuterWrapper>
-      <StyledLogo imageSource={data.logo.publicURL} isMobile isSmall />
+      <StyledLogo to="/" imageSource={data.logo.publicURL} isMobile />
       <StyledBurger onClick={toggleNavigation}>
         <div />
         <div />
         <div />
       </StyledBurger>
       <Wrapper isOpen={isOpen}>
-        <StyledLogo imageSource={data.logo.publicURL} />
+        <StyledLogo onClick={toggleNavigation} to="/" imageSource={data.logo.publicURL} />
         <StyledNavigation>
           <ul>
             <li>
