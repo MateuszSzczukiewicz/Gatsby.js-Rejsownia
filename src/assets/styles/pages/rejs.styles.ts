@@ -10,7 +10,7 @@ export const Place = styled.p`
     position: absolute;
     width: 40%;
     height: 1px;
-    background-color: black;
+    color: ${({ theme }) => theme.color.black};
     bottom: -10px;
     left: 0;
   }

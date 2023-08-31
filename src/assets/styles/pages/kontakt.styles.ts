@@ -8,7 +8,7 @@ interface ContactPhotoProps {
 
 export const ContactInfoWrapper = styled.section`
   a {
-    color: black;
+    color: ${({ theme }) => theme.color.black};
     display: flex;
     align-items: center;
     margin: 5px 0 10px -7px;

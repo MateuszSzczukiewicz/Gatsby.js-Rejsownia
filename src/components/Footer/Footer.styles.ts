@@ -22,7 +22,7 @@ export const StyledFooter = styled.footer`
     grid-column: 1 / 3;
 
     a {
-      color: black;
+      color: ${({ theme }) => theme.color.black};
       text-decoration: none;
       margin: 10px 0;
     }

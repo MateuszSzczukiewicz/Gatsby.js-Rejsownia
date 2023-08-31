@@ -1,16 +1,13 @@
 export const theme = {
   color: {
     darkBlue: 'hsl(195,51%,41%)',
-    cyan: 'hsl(195,100%,83%)',
-    lightBlue: 'hsl(195,78%,65%)',
-    rust: 'hsl(30,64%,38%)',
-    honey: 'hsl(30,77%,65%)',
-  },
-  size: {
-    desktopHeroHeight: '800px',
+    white: 'hsl(0,0%,100%)',
+    black: 'hsl(0,0%,0%)',
+    // lightBlue: 'hsl(195,78%,65%)',
+    // rust: 'hsl(30,64%,38%)',
+    // honey: 'hsl(30,77%,65%)',
   },
   font: {
-    shadow: '5px 5px 10px hsla(0, 0%, 0%, 0.15)',
     size: {
       heading: '5rem',
       headingMobile: '5.3rem',

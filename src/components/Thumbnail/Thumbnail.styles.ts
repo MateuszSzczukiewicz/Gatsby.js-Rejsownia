@@ -49,7 +49,7 @@ export const ThumbnailInfo = styled.div`
     position: absolute;
     width: 40%;
     height: 1px;
-    background-color: white;
+    background-color: ${({ theme }) => theme.font.white};
     bottom: -10px;
     left: 0;
   }

@@ -9,14 +9,6 @@ interface WelcomeSectionImageProps {
   imageSource: string;
 }
 
-interface ShowcaseImageProps {
-  isBig?: boolean;
-}
-
-interface StyledButtonProps {
-  isCentered?: boolean;
-}
-
 export const Hero = styled.div`
   position: relative;
   display: flex;
@@ -30,7 +22,7 @@ export const Hero = styled.div`
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    height: ${({ theme }) => theme.size.desktopHeroHeight};
+    height: 800px;
     justify-content: center;
   }
 `;
@@ -117,11 +109,11 @@ export const WelcomeSectionContent = styled.div`
     margin: 0 0 20px 0;
     font-size: 2.5rem;
     font-weight: 400;
-    color: white;
+    color: ${({ theme }) => theme.color.white};
   }
 
   p {
-    color: white;
+    color: ${({ theme }) => theme.color.white};
     font-size: ${({ theme }) => theme.font.size.paragraph};
   }
 
@@ -145,7 +137,7 @@ export const WelcomeSectionContent = styled.div`
 
 export const WelcomeSectionImage = styled.div<WelcomeSectionImageProps>`
   margin-top: 10px;
-  width: 90%;
+  width: 100%;
   height: 170px;
   position: relative;
   background-image: url('${({ imageSource }) => imageSource}');
@@ -176,7 +168,7 @@ export const StyledTitle = styled(Link)`
   line-height: 1.2;
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const ShowcaseSection = styled(StyledSection)`
@@ -206,7 +198,7 @@ export const ShowcaseSection = styled(StyledSection)`
   }
 `;
 
-export const StyledOffer = styled.div<StyledButtonProps>`
+export const StyledOffer = styled.div`
   border: 1px solid ${({ theme }) => theme.color.darkBlue};
   background-color: transparent;
   font-size: ${({ theme }) => theme.font.size.button};
@@ -216,7 +208,7 @@ export const StyledOffer = styled.div<StyledButtonProps>`
   text-transform: uppercase;
   display: block;
   margin: 8px 15px;
-  color: black;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const ShowcaseGallery = styled.div`
@@ -240,8 +232,8 @@ export const ShowcaseGallery = styled.div`
   }
 `;
 
-export const ShowcaseImage = styled.img<ShowcaseImageProps>`
-  width: 80vw;
+export const ShowcaseImage = styled.img`
+  width: 100%;
   height: 150px;
   object-fit: cover;
   margin: 10px auto;

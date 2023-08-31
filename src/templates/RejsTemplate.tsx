@@ -97,5 +97,3 @@ export const query = graphql`
 `;
 
 export default RejsTemplate;
-
-// DatoCmsCruise-187237087

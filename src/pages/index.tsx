@@ -115,11 +115,11 @@ const Homepage: React.FC<PageProps> = () => {
       <ShowcaseSection>
         <h2>Oferta rejsów</h2>
         <div>
-          <StyledOffer isCentered>Grecja</StyledOffer>
-          <StyledOffer isCentered>Sycylia</StyledOffer>
-          <StyledOffer isCentered>Wyspy Kanaryskie</StyledOffer>
-          <StyledOffer isCentered>Karaiby</StyledOffer>
-          <StyledOffer isCentered>Norwegia</StyledOffer>
+          <StyledOffer>Grecja</StyledOffer>
+          <StyledOffer>Sycylia</StyledOffer>
+          <StyledOffer>Wyspy Kanaryskie</StyledOffer>
+          <StyledOffer>Karaiby</StyledOffer>
+          <StyledOffer>Norwegia</StyledOffer>
         </div>
         <ShowcaseGallery>
           <ShowcaseImage src={data.grid1.publicURL} alt="#" />

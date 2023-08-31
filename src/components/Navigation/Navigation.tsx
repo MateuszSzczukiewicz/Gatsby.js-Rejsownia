@@ -35,7 +35,7 @@ export const Navigation: React.FC = () => {
   return (
     <OuterWrapper>
       <StyledLogo to="/" imageSource={data.logo.publicURL} isMobile />
-      <StyledBurger onClick={toggleNavigation}>
+      <StyledBurger onClick={toggleNavigation} isOpen={isOpen}>
         <div />
         <div />
         <div />

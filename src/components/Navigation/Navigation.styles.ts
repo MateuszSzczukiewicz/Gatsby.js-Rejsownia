@@ -22,10 +22,13 @@ export const OuterWrapper = styled.div`
   z-index: 1000;
 `;
 
-export const StyledBurger = styled.button`
+export const StyledBurger = styled.button<OuterWrapperProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: ${({ isOpen }) => (isOpen ? 'fixed' : 'relative')};
+  top: ${({ isOpen }) => (isOpen ? '45px' : '')};
+  right: ${({ isOpen }) => (isOpen ? '20px' : '')};
   width: 2rem;
   height: 2rem;
   background: transparent;
@@ -49,15 +52,16 @@ export const StyledBurger = styled.button`
 export const Wrapper = styled.div<OuterWrapperProps>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  background-color: white;
+  background-color: ${({ theme }) => theme.color.white};
   align-items: center;
   justify-content: space-between;
   padding: 50px;
+  overflow: hidden;
 
   ${({ theme }) => theme.mq.desktop} {
     position: static;
@@ -113,7 +117,7 @@ export const StyledNavigation = styled.nav`
         display: inline-block;
         padding: 25px;
         font-family: ${({ theme }) => theme.font.family.merriweather};
-        color: black;
+        color: ${({ theme }) => theme.color.black};
         text-decoration: none;
         font-size: ${({ theme }) => theme.font.size.mobileMenu};
       }

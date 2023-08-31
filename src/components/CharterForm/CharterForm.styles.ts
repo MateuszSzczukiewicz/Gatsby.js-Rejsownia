@@ -47,6 +47,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   text-transform: uppercase;
   display: block;
   margin: 8px 15px;
-  color: black;
+  color: ${({ theme }) => theme.color.black};
   text-decoration: none;
 `;
