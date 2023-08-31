@@ -37,6 +37,7 @@ const config: GatsbyConfig = {
     'gatsby-transformer-remark',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sitemap',
+    'gatsby-plugin-testing',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

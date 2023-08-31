@@ -14,15 +14,23 @@ export const CharterForm: React.FC = () => {
   return (
     <ContactFormWrapper onSubmit={handleSubmit}>
       <label htmlFor="name">Imię i nazwisko</label>
-      <textarea name="name" id="name" placeholder="Imię i nazwisko" />
+      <textarea name="name" id="name" placeholder="Imię i nazwisko" required />
       <label htmlFor="email">Adres e-mail</label>
-      <input type="email" name="email" id="email" placeholder="Adres e-mail" />
+      <input type="email" name="email" id="email" placeholder="Adres e-mail" required />
+      <label htmlFor="phoneNumber">Numer telefonu</label>
+      <input
+        type="phoneNumber"
+        name="phoneNumber"
+        id="phoneNumber"
+        placeholder="Numer telefonu"
+        required
+      />
       <label htmlFor="date">Termin</label>
-      <textarea name="date" id="date" placeholder="Termin" />
+      <textarea name="date" id="date" placeholder="Termin" required />
       <label htmlFor="place">Miejsce</label>
-      <textarea name="place" id="place" placeholder="Miejsce" />
+      <textarea name="place" id="place" placeholder="Miejsce" required />
       <label htmlFor="numberOfPeople">Liczba osób</label>
-      <textarea name="numberOfPeople" id="numberOfPeople" placeholder="Liczba osób" />
+      <textarea name="numberOfPeople" id="numberOfPeople" placeholder="Liczba osób" required />
       <label htmlFor="boatLength">Wielkość łódki</label>
       <textarea name="boatLength" id="boatLength" placeholder="Wielkość łódki" />
       <label htmlFor="bowThruster">Ster strumieniowy</label>

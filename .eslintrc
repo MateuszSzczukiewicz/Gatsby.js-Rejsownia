@@ -68,6 +68,7 @@
         "gatsby-browser.tsx",
         "gatsby-ssr.tsx",
         "gatsby-node.ts",
+        "jest.config.ts",
         "*.styles.*"
       ],
       "rules": {
