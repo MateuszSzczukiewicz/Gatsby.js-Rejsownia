@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
-import { StyledFooter, StyledFooterIcon } from './Footer.styles';
+import { StyledFooter, StyledFooterIcon, StyledHeading } from './Footer.styles';
 
 export const Footer: React.FC = () => (
   <StyledFooter>
-    <h4>L.A. Yachting</h4>
+    <StyledHeading to="/">L.A. Yachting</StyledHeading>
     <div>
       <Link to="/rejsy">Rejsy turystyczne</Link>
       <Link to="/staze">Staże i szkolenia</Link>

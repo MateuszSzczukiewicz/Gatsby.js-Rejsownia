@@ -1,21 +1,6 @@
 import styled from 'styled-components';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
 
-export const Place = styled.p`
-  font-weight: 700;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 40%;
-    height: 1px;
-    color: ${({ theme }) => theme.color.black};
-    bottom: -10px;
-    left: 0;
-  }
-`;
-
 export const OfferDetailsList = styled.ul`
   list-style: none;
   padding: 0;

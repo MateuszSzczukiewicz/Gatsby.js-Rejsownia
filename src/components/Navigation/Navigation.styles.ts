@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { StyledIcon } from '../StyledIcon/StyledIcon';
 import { Link } from 'gatsby';
 
-interface OuterWrapperProps {
+interface IsOpenProps {
   isOpen: boolean;
 }
 
@@ -22,26 +22,42 @@ export const OuterWrapper = styled.div`
   z-index: 1000;
 `;
 
-export const StyledBurger = styled.button<OuterWrapperProps>`
+export const StyledBurger = styled.label<IsOpenProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   position: ${({ isOpen }) => (isOpen ? 'fixed' : 'relative')};
-  top: ${({ isOpen }) => (isOpen ? '45px' : '')};
-  right: ${({ isOpen }) => (isOpen ? '20px' : '')};
-  width: 2rem;
-  height: 2rem;
+  top: ${({ isOpen }) => (isOpen ? '46px' : '')};
+  right: ${({ isOpen }) => (isOpen ? '29px' : '')};
+  width: 18px;
+  height: 18px;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
   z-index: 10;
 
   div {
     width: 2rem;
-    height: 0.15rem;
-    background: black;
-    position: relative;
+    height: 2px;
+    background-color: ${({ theme }) => theme.color.black};
+  }
+
+  div:nth-child(1) {
+    position: ${({ isOpen }) => (isOpen ? 'absolute' : '')};
+    top: ${({ isOpen }) => (isOpen ? '50%' : '')};
+    left: ${({ isOpen }) => (isOpen ? '50%' : '')};
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(45deg) translateY(0px)' : '')};
+  }
+
+  div:nth-child(2) {
+    opacity: ${({ isOpen }) => (isOpen ? 0 : 1)};
+  }
+
+  div:nth-child(3) {
+    position: ${({ isOpen }) => (isOpen ? 'absolute' : '')};
+    top: ${({ isOpen }) => (isOpen ? '50%' : '')};
+    left: ${({ isOpen }) => (isOpen ? '50%' : '')};
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(-45deg) translateY(0px)' : '')};
   }
 
   ${({ theme }) => theme.mq.desktop} {
@@ -49,7 +65,36 @@ export const StyledBurger = styled.button<OuterWrapperProps>`
   }
 `;
 
-export const Wrapper = styled.div<OuterWrapperProps>`
+export const StyledButton = styled(Link)<IsOpenProps>`
+  position: relative;
+  overflow: hidden;
+  box-shadow: ${({ isOpen }) => (isOpen ? '' : 'inset 0 0 0 3px black')};
+
+  span {
+    position: relative;
+    z-index: 2;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1) rotate(45deg);
+    transform-origin: 50%;
+    transition: transform 0.5s cubic-bezier(0.61, 0.07, 0.23, 0.89);
+    z-index: 1;
+  }
+
+  &:hover::after {
+    transform: translate(-50%, -50%) scale(0) rotate(45deg);
+  }
+`;
+
+export const Wrapper = styled.div<IsOpenProps>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   width: 100vw;
@@ -62,6 +107,10 @@ export const Wrapper = styled.div<OuterWrapperProps>`
   justify-content: space-between;
   padding: 50px;
   overflow: hidden;
+
+  ${({ theme }) => theme.mq.tablet} {
+    font-size: ${({ theme }) => theme.font.size.headingMobile};
+  }
 
   ${({ theme }) => theme.mq.desktop} {
     position: static;
@@ -106,7 +155,7 @@ export const StyledSocialIcon = styled(StyledIcon)`
   }
 `;
 
-export const StyledNavigation = styled.nav`
+export const StyledNavigation = styled.nav<IsOpenProps>`
   ul {
     list-style: none;
     padding: 0;

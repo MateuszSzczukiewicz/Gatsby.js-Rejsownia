@@ -29,7 +29,7 @@ export const Gallery = styled.div`
 export const EmptyState = styled.div`
   margin: 100px auto;
   text-align: center;
-  width: 500px;
+  width: 300px;
   padding: 30px;
   background-color: ${({ theme }) => theme.color.darkBlue};
 
@@ -42,5 +42,9 @@ export const EmptyState = styled.div`
     margin: 10px 0;
     font-size: 1.6rem;
     font-family: ${({ theme }) => theme.font.family.montserrat};
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    width: 500px;
   }
 `;

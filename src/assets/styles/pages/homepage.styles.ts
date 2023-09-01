@@ -136,7 +136,7 @@ export const WelcomeSectionContent = styled.div`
 `;
 
 export const WelcomeSectionImage = styled.div<WelcomeSectionImageProps>`
-  margin-top: 10px;
+  margin: 10px auto 100px;
   width: 100%;
   height: 170px;
   position: relative;

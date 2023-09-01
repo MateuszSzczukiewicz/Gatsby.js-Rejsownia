@@ -1,19 +1,12 @@
 import styled from 'styled-components';
 import { StyledIcon } from 'components/StyledIcon/StyledIcon.tsx';
+import { Link } from 'gatsby';
 
 export const StyledFooter = styled.footer`
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr 1fr;
   padding: 50px 20px;
-
-  h4 {
-    font-family: ${({ theme }) => theme.font.family.montserrat};
-    font-weight: 600;
-    grid-row: 1 / 2;
-    margin: 0;
-    align-self: center;
-  }
 
   div:first-of-type {
     display: grid;
@@ -47,6 +40,17 @@ export const StyledFooter = styled.footer`
       grid-template-columns: repeat(3, 1fr);
     }
   }
+`;
+
+export const StyledHeading = styled(Link)`
+  font-family: ${({ theme }) => theme.font.family.montserrat};
+  font-weight: 600;
+  grid-row: 1 / 2;
+  margin: 0;
+  align-self: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
 `;
 
 export const StyledFooterIcon = styled(StyledIcon)`

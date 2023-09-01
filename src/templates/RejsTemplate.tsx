@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import {
-  Place,
   Gallery,
   OfferDescription,
   OfferDetailsList,
@@ -46,7 +45,6 @@ const RejsTemplate: React.FC<RejsTemplateProps> = ({ data }) => {
   return (
     <StyledContentWrapper>
       <OfferTitle>
-        <Place>{cruise.place}</Place>
         <HighlightedHeading>{cruise.title}</HighlightedHeading>
       </OfferTitle>
       <Gallery>
@@ -60,6 +58,12 @@ const RejsTemplate: React.FC<RejsTemplateProps> = ({ data }) => {
         dangerouslySetInnerHTML={{ __html: cruise.descriptionNode.childMarkdownRemark.html }}
       />
       <OfferDetailsList>
+        <li>
+          <div>
+            <p>Miejsce:</p>
+            <p>{cruise.place}</p>
+          </div>
+        </li>
         <li>
           <div>
             <p>Data rejsu:</p>
@@ -82,6 +86,7 @@ export const query = graphql`
   query SubPageQuery($id: String) {
     cruise: datoCmsCruise(id: { eq: $id }) {
       title
+      place
       date
       cost
       descriptionNode {

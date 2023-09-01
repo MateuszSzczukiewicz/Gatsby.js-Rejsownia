@@ -3,9 +3,6 @@ export const theme = {
     darkBlue: 'hsl(195,51%,41%)',
     white: 'hsl(0,0%,100%)',
     black: 'hsl(0,0%,0%)',
-    // lightBlue: 'hsl(195,78%,65%)',
-    // rust: 'hsl(30,64%,38%)',
-    // honey: 'hsl(30,77%,65%)',
   },
   font: {
     size: {

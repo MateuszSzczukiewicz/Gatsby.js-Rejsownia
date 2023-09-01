@@ -49,7 +49,7 @@ export const Staze: React.FC<PageProps> = ({ data }) => {
       ) : (
         <EmptyState>
           <h2>Brak stażów i rejsów szkoleniowych</h2>
-          <h3>Już niebawem nowe staże i rejsy szkoleniowe od L.A. Yachting</h3>
+          <h3>Już niebawem nowe staże rejsy szkoleniowe od L.A. Yachting</h3>
         </EmptyState>
       )}
     </ContentWrapper>

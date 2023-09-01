@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
-import {
-  OuterWrapper,
-  StyledBurger,
-  StyledLogo,
-  StyledNavigation,
-  StyledSocialIcon,
-  Wrapper,
-} from './Navigation.styles.ts';
+import { OuterWrapper, StyledBurger, StyledButton, StyledLogo, StyledNavigation, StyledSocialIcon, Wrapper } from './Navigation.styles.ts';
 
 interface NavigationQuery {
   logo: {
@@ -42,27 +35,27 @@ export const Navigation: React.FC = () => {
       </StyledBurger>
       <Wrapper isOpen={isOpen}>
         <StyledLogo onClick={toggleNavigation} to="/" imageSource={data.logo.publicURL} />
-        <StyledNavigation>
+        <StyledNavigation isOpen={isOpen}>
           <ul>
             <li>
-              <Link onClick={toggleNavigation} to="/rejsy">
-                Rejsy turystyczne
-              </Link>
+              <StyledButton isOpen={isOpen} onClick={toggleNavigation} to="/rejsy">
+                <span>Rejsy turystyczne</span>
+              </StyledButton>
             </li>
             <li>
-              <Link onClick={toggleNavigation} to="/staze">
-                Staże i szkolenia
-              </Link>
+              <StyledButton isOpen={isOpen} onClick={toggleNavigation} to="/staze">
+                <span>Staże i szkolenia</span>
+              </StyledButton>
             </li>
             <li>
-              <Link onClick={toggleNavigation} to="/czarter">
-                Czarter jachtów
-              </Link>
+              <StyledButton isOpen={isOpen} onClick={toggleNavigation} to="/czarter">
+                <span>Czarter jachtów</span>
+              </StyledButton>
             </li>
             <li>
-              <Link onClick={toggleNavigation} to="/kontakt">
-                Kontakt
-              </Link>
+              <StyledButton isOpen={isOpen} onClick={toggleNavigation} to="/kontakt">
+                <span>Kontakt</span>
+              </StyledButton>
             </li>
           </ul>
         </StyledNavigation>
