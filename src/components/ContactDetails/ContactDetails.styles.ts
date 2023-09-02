@@ -1,8 +1,11 @@
 import styled from 'styled-components';
+import { Link } from 'gatsby';
 
-export const ContactDetailsWrapper = styled.div`
+export const ContactDetailsWrapper = styled(Link)`
   display: flex;
   margin-bottom: 50px;
+  text-decoration: none;
+  width: max-content;
 
   img {
     width: 100px;
@@ -14,6 +17,7 @@ export const ContactDetailsWrapper = styled.div`
 
   p {
     margin: 0;
+    color: ${({ theme }) => theme.color.black};
   }
 
   p:first-child {

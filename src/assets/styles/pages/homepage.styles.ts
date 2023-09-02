@@ -92,7 +92,7 @@ export const WelcomeSection = styled(StyledSection)`
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin: 180px 0 150px;
+    margin: 100px 0 200px;
   }
 
   ${({ theme }) => theme.mq.bigDesktop} {
@@ -155,7 +155,6 @@ export const WelcomeSectionImage = styled.div<WelcomeSectionImageProps>`
 
 export const OffersSection = styled(StyledSection)`
   ${({ theme }) => theme.mq.desktop} {
-    //margin-top: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -254,6 +253,10 @@ export const StyledLinkButton = styled(Link)`
   display: inline-block;
   margin: 5px 0 10px;
 
+  &:hover {
+    color: darkblue;
+  }
+
   &::after {
     position: absolute;
     content: '';
@@ -288,4 +291,11 @@ export const ServicesSection = styled(StyledSection)`
       max-width: 450px;
     }
   }
+`;
+
+export const StyledHeading = styled.div`
+  font-size: ${({ theme }) => theme.font.size.headingSmall};
+  font-family: ${({ theme }) => theme.font.family.merriweather};
+  position: relative;
+  display: inline-block;
 `;

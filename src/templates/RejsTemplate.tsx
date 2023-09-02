@@ -6,8 +6,9 @@ import {
   OfferDetailsList,
   OfferTitle,
   StyledContentWrapper,
+  StyledHeading,
+  StyledImage,
 } from 'assets/styles/pages/rejs.styles.ts';
-import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { ContactDetails } from 'components/ContactDetails/ContactDetails';
@@ -45,18 +46,16 @@ const RejsTemplate: React.FC<RejsTemplateProps> = ({ data }) => {
   return (
     <StyledContentWrapper>
       <OfferTitle>
-        <HighlightedHeading>{cruise.title}</HighlightedHeading>
+        <StyledHeading>{cruise.title}</StyledHeading>
       </OfferTitle>
       <Gallery>
         <Carousel {...galleryOptions}>
           {cruise.gallery.map((item) => (
-            <img src={item.url} key={item.url} alt="" />
+            <StyledImage src={item.url} key={item.url} alt="" />
           ))}
         </Carousel>
       </Gallery>
-      <OfferDescription
-        dangerouslySetInnerHTML={{ __html: cruise.descriptionNode.childMarkdownRemark.html }}
-      />
+      <OfferDescription dangerouslySetInnerHTML={{ __html: cruise.descriptionNode.childMarkdownRemark.html }} />
       <OfferDetailsList>
         <li>
           <div>

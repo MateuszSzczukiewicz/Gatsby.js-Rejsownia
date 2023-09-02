@@ -1,11 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql, PageProps } from 'gatsby';
-import {
-  ContactContentWrapper,
-  ContactInfoWrapper,
-  ContactPhoto,
-} from 'assets/styles/pages/kontakt.styles';
-import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading';
+import { ContactContentWrapper, ContactInfoWrapper, ContactPhoto, StyledHeading } from 'assets/styles/pages/kontakt.styles';
 import { PhoneIcon } from 'assets/icons/PhoneIcon';
 import { EmailIcon } from 'assets/icons/EmailIcon.tsx';
 import { ContactForm } from 'components/ContactForm/ContactForm';
@@ -22,12 +17,11 @@ export const Kontakt: React.FC<PageProps> = () => {
   return (
     <ContactContentWrapper>
       <ContactInfoWrapper>
-        <HighlightedHeading>Kontakt</HighlightedHeading>
+        <StyledHeading>Kontakt</StyledHeading>
         <p>
-          Interesują Cię niezapomniane rejsy turystyczne, staże czy rejsy szkoleniowe? Jesteśmy tu,
-          aby Ci pomóc! Niezależnie od tego, czy marzysz o odkrywaniu nowych miejsc podczas
-          relaksującego rejsu, czy też szukasz możliwości stażu lub szkolenia na wodach, jesteśmy
-          gotowi odpowiedzieć na Twoje pytania.
+          Interesują Cię niezapomniane rejsy turystyczne, staże czy rejsy szkoleniowe? Jesteśmy tu, aby Ci pomóc! Niezależnie od tego, czy marzysz o
+          odkrywaniu nowych miejsc podczas relaksującego rejsu, czy też szukasz możliwości stażu lub szkolenia na wodach, jesteśmy gotowi odpowiedzieć
+          na Twoje pytania.
         </p>
         <address>
           <a href="mailto:andylatusek@gmail.com">

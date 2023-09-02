@@ -18,7 +18,7 @@ export const ContactDetails: React.FC = () => {
   `);
 
   return (
-    <ContactDetailsWrapper>
+    <ContactDetailsWrapper to="/kontakt">
       <img src={data.hero.publicURL} alt="Andrzej Latusek" />
       <div>
         <p>Kontakt:</p>

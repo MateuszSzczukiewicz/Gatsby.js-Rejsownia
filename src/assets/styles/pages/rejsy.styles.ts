@@ -48,3 +48,10 @@ export const EmptyState = styled.div`
     width: 500px;
   }
 `;
+
+export const StyledHeading = styled.div`
+  font-size: ${({ theme }) => theme.font.size.headingSmall};
+  font-family: ${({ theme }) => theme.font.family.merriweather};
+  position: relative;
+  display: inline-block;
+`;

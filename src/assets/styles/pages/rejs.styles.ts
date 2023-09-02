@@ -4,11 +4,10 @@ import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles'
 export const OfferDetailsList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 50px 0;
+  margin: 0 auto;
 
   li {
     display: flex;
-    margin: 20px 0;
 
     p {
       margin: 4px 10px;
@@ -20,8 +19,6 @@ export const OfferDetailsList = styled.ul`
   }
 
   ${({ theme }) => theme.mq.desktop} {
-    margin: 50px 0;
-
     li {
       margin: 30px 0;
     }
@@ -32,12 +29,21 @@ export const OfferDetailsList = styled.ul`
   }
 `;
 
+export const StyledImage = styled.img`
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+`;
+
 export const Gallery = styled.div`
   width: 100%;
+  max-width: 1000px;
+  margin: 50px auto;
 `;
 
 export const OfferDescription = styled.div`
   position: relative;
+  margin-top: 30px;
 
   ${({ theme }) => theme.mq.desktop} {
     top: -60px;
@@ -86,4 +92,11 @@ export const StyledContentWrapper = styled(ContentWrapper)`
       grid-row: 2 / 4;
     }
   }
+`;
+
+export const StyledHeading = styled.div`
+  font-size: ${({ theme }) => theme.font.size.headingSmall};
+  font-family: ${({ theme }) => theme.font.family.merriweather};
+  position: relative;
+  display: inline-block;
 `;

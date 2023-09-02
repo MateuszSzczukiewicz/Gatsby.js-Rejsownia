@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link, PageProps } from 'gatsby';
 import { ContentWrapper } from '../components/ContentWrapper/ContentWrapper.styles';
-import { HighlightedHeading } from '../components/HighlightedHeading/HighlightedHeading';
 import { StyledList } from '../components/StyledList/StyledList.styles';
 import {
   Hero,
@@ -18,6 +17,7 @@ import {
   ShowcaseGallery,
   StyledLinkButton,
   ServicesSection,
+  StyledHeading,
 } from 'assets/styles/pages/homepage.styles.ts';
 
 const Homepage: React.FC<PageProps> = () => {
@@ -56,58 +56,46 @@ const Homepage: React.FC<PageProps> = () => {
         <WelcomeSectionContent>
           <h2>Witaj na Pokładzie L.A Yachting</h2>
           <p>
-            Przygotuj się na niezapomniane przygody na falach z L.A. Yachting. Z ponad
-            trzydziestoletnim doświadczeniem, zapewniamy doskonale zorganizowane rejsy, unikalną
-            żeglarską atmosferę oraz atrakcje zarówno na morzu, jak i na lądzie. Wszystko to pod
-            czujnym okiem doświadczonego mistrza żeglugi - Andrzeja Latuska, który wprowadzi Cię w
-            świat morskich wyzwań i przygód.
+            Przygotuj się na niezapomniane przygody na falach z L.A. Yachting. Z ponad trzydziestoletnim doświadczeniem, zapewniamy doskonale
+            zorganizowane rejsy, unikalną żeglarską atmosferę oraz atrakcje zarówno na morzu, jak i na lądzie. Wszystko to pod czujnym okiem
+            doświadczonego mistrza żeglugi - Andrzeja Latuska, który wprowadzi Cię w świat morskich wyzwań i przygód.
           </p>
           <p>
-            Andrzej Latusek to żeglarz z trzydziestoletnim stażem, odpowiedzialny za nasze
-            niezapomniane rejsy. Jego pasja i doświadczenie sprawiają, że każda chwila na pokładzie
-            jest nie tylko bezpieczna, ale także inspirująca. Nasze wyprawy prowadzą przez
-            malownicze tereny, takie jak urokliwa Grecja, egzotyczna Teneryfa, urocza Chorwacja czy
-            rajskie Karaiby. To więcej niż tylko podróż – to wyjątkowe doświadczenie, które połączy
-            Cię z pięknem natury i sztuką żeglowania.
+            Andrzej Latusek to żeglarz z trzydziestoletnim stażem, odpowiedzialny za nasze niezapomniane rejsy. Jego pasja i doświadczenie sprawiają,
+            że każda chwila na pokładzie jest nie tylko bezpieczna, ale także inspirująca. Nasze wyprawy prowadzą przez malownicze tereny, takie jak
+            urokliwa Grecja, egzotyczna Teneryfa, urocza Chorwacja czy rajskie Karaiby. To więcej niż tylko podróż – to wyjątkowe doświadczenie, które
+            połączy Cię z pięknem natury i sztuką żeglowania.
           </p>
         </WelcomeSectionContent>
         <WelcomeSectionImage imageSource={data.welcome.publicURL} />
       </WelcomeSection>
       <OffersSection>
-        <HighlightedHeading width="50" isRight>
-          Odkryj Świat Naszych Rejsów!
-        </HighlightedHeading>
+        <StyledHeading>Odkryj Świat Naszych Rejsów!</StyledHeading>
         <StyledList>
           <li>
             <StyledTitle to="/rejsy">Rejsy turystyczne</StyledTitle>
             <p>
-              Zapraszamy Cię do naszej morskiej odysei! Nasze rejsy turystyczne to prawdziwe
-              doświadczenie żeglowania, oparte na aktywnym uczestnictwie w załodze. Niezależnie od
-              Twojego poziomu doświadczenia, zapewniamy Ci wyjątkową okazję do zdobycia morskich
-              umiejętności, pod okiem naszych ekspertów, podczas niezapomnianych przygód na wodach.
-              Dołącz i poczuj ducha żeglarstwa razem z nami!
+              Zapraszamy Cię do naszej morskiej odysei! Nasze rejsy turystyczne to prawdziwe doświadczenie żeglowania, oparte na aktywnym
+              uczestnictwie w załodze. Niezależnie od Twojego poziomu doświadczenia, zapewniamy Ci wyjątkową okazję do zdobycia morskich umiejętności,
+              pod okiem naszych ekspertów, podczas niezapomnianych przygód na wodach. Dołącz i poczuj ducha żeglarstwa razem z nami!
             </p>
           </li>
           <li>
             <StyledTitle to="/staze">Staże i szkolenia</StyledTitle>
             <p>
-              Witaj na pokładzie naszych ekscytujących rejsów szkoleniowych! Oferujemy
-              niepowtarzalne doświadczenia żeglowania, gdzie aktywne uczestnictwo w załodze to klucz
-              do nabywania morskich umiejętności, niezależnie od Twojego poziomu. Możesz u nas
-              zdobyć patent sternika, stawiając czoła wyzwaniom morskim. Dołącz do nas, by razem
-              odkrywać fascynujący świat żeglarstwa i zdobywać wiedzę, która doprowadzi cię do
-              nieodkrytych dotąd możliwości!
+              Witaj na pokładzie naszych ekscytujących rejsów szkoleniowych! Oferujemy niepowtarzalne doświadczenia żeglowania, gdzie aktywne
+              uczestnictwo w załodze to klucz do nabywania morskich umiejętności, niezależnie od Twojego poziomu. Możesz u nas zdobyć patent sternika,
+              stawiając czoła wyzwaniom morskim. Dołącz do nas, by razem odkrywać fascynujący świat żeglarstwa i zdobywać wiedzę, która doprowadzi cię
+              do nieodkrytych dotąd możliwości!
             </p>
           </li>
           <li>
             <StyledTitle to="/czarter">Czarter yachtów</StyledTitle>
             <p>
-              Oferujemy Ci także niezapomniany czarter łodzi, gdzie marzenia stają się
-              rzeczywistością! Nasza wyjątkowa oferta to mistrzowskie dopasowanie rejsu do Twoich
-              osobistych pragnień. Niezależnie od daty, lokalizacji czy liczby uczestników – naszą
-              misją jest spełnienie każdego Twojego oczekiwania. Poznaj nieodkryte jeszcze zakątki
-              światowych mórz i zanurz się w najpiękniejszych przygodach, jakie życie na wodzie może
-              Ci zaoferować!
+              Oferujemy Ci także niezapomniany czarter łodzi, gdzie marzenia stają się rzeczywistością! Nasza wyjątkowa oferta to mistrzowskie
+              dopasowanie rejsu do Twoich osobistych pragnień. Niezależnie od daty, lokalizacji czy liczby uczestników – naszą misją jest spełnienie
+              każdego Twojego oczekiwania. Poznaj nieodkryte jeszcze zakątki światowych mórz i zanurz się w najpiękniejszych przygodach, jakie życie
+              na wodzie może Ci zaoferować!
             </p>
           </li>
         </StyledList>
@@ -130,17 +118,16 @@ const Homepage: React.FC<PageProps> = () => {
       </ShowcaseSection>
       <ServicesSection>
         <div>
-          <HighlightedHeading width="55">Zrealizuj swoje marzenia!</HighlightedHeading>
+          <StyledHeading>Zrealizuj swoje marzenia!</StyledHeading>
           <StyledLinkButton as={Link} to="/kontakt">
             Skontaktuj się z nami!
           </StyledLinkButton>
         </div>
         <p>
-          L.A. Yachting – Twoja droga do niezapomnianych chwil na falach, do spotkań z naturą w jej
-          najczystszej formie i tworzenia relacji na całe lata. Przygotuj się na wyjątkowe przygody,
-          nowe przyjaźnie i niesamowite wspomnienia. Razem z nami żeglowanie nabiera nowego
-          znaczenia – staje się pasją, stylem życia i sposobem na odkrywanie świata w sposób, o
-          jakim marzyłeś. Dołącz do Nas i odkryj, jak piękny może być świat na morzu.
+          L.A. Yachting – Twoja droga do niezapomnianych chwil na falach, do spotkań z naturą w jej najczystszej formie i tworzenia relacji na całe
+          lata. Przygotuj się na wyjątkowe przygody, nowe przyjaźnie i niesamowite wspomnienia. Razem z nami żeglowanie nabiera nowego znaczenia –
+          staje się pasją, stylem życia i sposobem na odkrywanie świata w sposób, o jakim marzyłeś. Dołącz do Nas i odkryj, jak piękny może być świat
+          na morzu.
         </p>
       </ServicesSection>
     </ContentWrapper>

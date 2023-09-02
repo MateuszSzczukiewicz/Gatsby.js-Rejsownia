@@ -1,8 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { HighlightedHeading } from 'components/HighlightedHeading/HighlightedHeading';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
-import { EmptyState, Gallery, IntroSection } from 'assets/styles/pages/rejsy.styles.ts';
+import { EmptyState, Gallery, IntroSection, StyledHeading } from 'assets/styles/pages/rejsy.styles.ts';
 import { Thumbnail } from 'components/Thumbnail/Thumbnail';
 
 interface Cruise {
@@ -29,21 +28,16 @@ export const Turystyczne: React.FC<PageProps> = ({ data }) => {
   return (
     <ContentWrapper>
       <IntroSection>
-        <HighlightedHeading>Nasza oferta rejsów turystycznych</HighlightedHeading>
+        <StyledHeading>Nasza oferta rejsów turystycznych</StyledHeading>
         <p>
-          Bezustannie przeszukujemy bogatą gamę rejsów turystycznych, gotowych zaspokoić każde gusta
-          podróżników. Wybierz rodzaj rejsu, który wzbudza Twoje zainteresowanie.
+          Bezustannie przeszukujemy bogatą gamę rejsów turystycznych, gotowych zaspokoić każde gusta podróżników. Wybierz rodzaj rejsu, który wzbudza
+          Twoje zainteresowanie.
         </p>
       </IntroSection>
       {cruises.length ? (
         <Gallery>
           {cruises.map((cruise) => (
-            <Thumbnail
-              key={cruise.id}
-              imageSource={cruise.gallery[0].url}
-              place={cruise.place}
-              date={cruise.date}
-            />
+            <Thumbnail key={cruise.id} imageSource={cruise.gallery[0].url} place={cruise.place} date={cruise.date} />
           ))}
         </Gallery>
       ) : (

@@ -66,9 +66,10 @@ export const StyledBurger = styled.label<IsOpenProps>`
 `;
 
 export const StyledButton = styled(Link)<IsOpenProps>`
+  width: calc(100% + 30px);
   position: relative;
   overflow: hidden;
-  box-shadow: ${({ isOpen }) => (isOpen ? '' : 'inset 0 0 0 3px black')};
+  box-shadow: ${({ isOpen }) => (isOpen ? '' : 'inset 0 0 0 2px black')};
 
   span {
     position: relative;
@@ -183,6 +184,7 @@ export const StyledNavigation = styled.nav<IsOpenProps>`
 
   ${({ theme }) => theme.mq.desktop} {
     margin-left: auto;
+    margin-right: 30px;
 
     ul {
       display: flex;
