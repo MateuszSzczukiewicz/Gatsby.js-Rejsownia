@@ -30,8 +30,8 @@ export const Staze: React.FC<PageProps> = ({ data }) => {
       <IntroSection>
         <StyledHeading>Nasza oferta stażów oraz rejsów szkoleniowych</StyledHeading>
         <p>
-          Bezustannie przeszukujemy bogatą gamę stażów oraz rejsów szkoleniowych, gotowych zaspokoić każde gusta podróżników. Wybierz rodzaj rejsu,
-          który wzbudza Twoje zainteresowanie.
+          Bezustannie przygotowujemy bogatą gamę stażów oraz rejsów szkoleniowych, gotowych zaspokoić każde gusta podróżników. Wybierz rejs, który
+          wzbudza Twoje zainteresowanie.
         </p>
       </IntroSection>
       {cruises.length ? (

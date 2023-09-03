@@ -14,8 +14,7 @@ export const Hero = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
-  margin-bottom: 100px;
+  height: 90vh;
 
   ${({ theme }) => theme.mq.tablet} {
     height: 40vh;
@@ -76,16 +75,9 @@ export const HeroHeading = styled.div`
   }
 `;
 
-const StyledSection = styled.section`
-  margin: 100px 0;
-
-  ${({ theme }) => theme.mq.desktop} {
-    margin: 100px 0;
-  }
-`;
-
-export const WelcomeSection = styled(StyledSection)`
+export const WelcomeSection = styled.section`
   padding: 0 20px;
+  margin-bottom: 100px;
 
   ${({ theme }) => theme.mq.desktop} {
     width: 100%;
@@ -96,7 +88,7 @@ export const WelcomeSection = styled(StyledSection)`
   }
 
   ${({ theme }) => theme.mq.bigDesktop} {
-    margin: 180px 0 100px;
+    margin: 100px 0 100px;
   }
 `;
 
@@ -153,7 +145,9 @@ export const WelcomeSectionImage = styled.div<WelcomeSectionImageProps>`
   }
 `;
 
-export const OffersSection = styled(StyledSection)`
+export const OffersSection = styled.section`
+  margin-bottom: 100px;
+
   ${({ theme }) => theme.mq.desktop} {
     display: flex;
     flex-direction: column;
@@ -170,7 +164,9 @@ export const StyledTitle = styled(Link)`
   color: ${({ theme }) => theme.color.black};
 `;
 
-export const ShowcaseSection = styled(StyledSection)`
+export const ShowcaseSection = styled.section`
+  margin-bottom: 100px;
+
   h2 {
     font-size: ${({ theme }) => theme.font.size.headingMobile};
     text-align: center;
@@ -237,7 +233,7 @@ export const ShowcaseImage = styled.img`
   object-fit: cover;
   margin: 10px auto;
 
-  ${({ theme }) => theme.mq.desktop} {
+  ${({ theme }) => theme.mq.bigDesktop} {
     width: 600px;
     height: 300px;
     margin: 0;
@@ -271,7 +267,7 @@ export const StyledLinkButton = styled(Link)`
   }
 `;
 
-export const ServicesSection = styled(StyledSection)`
+export const ServicesSection = styled.section`
   ${({ theme }) => theme.mq.desktop} {
     display: grid;
     grid-template-columns: 1fr 1fr;

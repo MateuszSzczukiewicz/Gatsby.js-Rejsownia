@@ -23,7 +23,7 @@ export const ContactDetails: React.FC = () => {
       <div>
         <p>Kontakt:</p>
         <p>Andrzej Latusek</p>
-        <p>andylatusek@gmail.com</p>
+        <p>l.a.yachtingltd@gmail.com</p>
         <p>+48 668 890 650</p>
       </div>
     </ContactDetailsWrapper>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from '@formspree/react';
+import { useForm, ValidationError } from '@formspree/react';
 import { ContactFormWrapper, StyledButton } from 'components/CharterForm/CharterForm.styles';
 
 interface FormValues {
@@ -14,38 +14,39 @@ export const CharterForm: React.FC = () => {
   return (
     <ContactFormWrapper onSubmit={handleSubmit}>
       <label htmlFor="name">Imię i nazwisko:</label>
-      <textarea name="name" id="name" placeholder="Imię i nazwisko" required />
+      <textarea name="Imię i nazwisko" id="name" placeholder="Imię i nazwisko" required />
       <label htmlFor="email">Adres e-mail:</label>
-      <input type="email" name="email" id="email" placeholder="Adres e-mail" required />
+      <input type="Adres e-mail" name="email" id="email" placeholder="Adres e-mail" required />
+      <ValidationError prefix="Email" field="email" errors={state.errors} />
       <label htmlFor="phoneNumber">Numer telefonu:</label>
-      <input type="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Numer telefonu" required />
+      <input type="phoneNumber" name="Numer telefonu" id="phoneNumber" placeholder="Numer telefonu" required />
       <label htmlFor="date">Termin:</label>
-      <textarea name="date" id="date" placeholder="Termin" required />
+      <textarea name="Termin" id="date" placeholder="Termin" required />
       <label htmlFor="place">Miejsce:</label>
-      <textarea name="place" id="place" placeholder="Miejsce" required />
+      <textarea name="Miejsce" id="place" placeholder="Miejsce" required />
       <label htmlFor="numberOfPeople">Liczba osób:</label>
-      <textarea name="numberOfPeople" id="numberOfPeople" placeholder="Liczba osób" required />
+      <textarea name="Liczba osób" id="numberOfPeople" placeholder="Liczba osób" required />
       <label htmlFor="boatLength">Wielkość łódki:</label>
-      <textarea name="boatLength" id="boatLength" placeholder="Wielkość łódki" />
+      <textarea name="Wielkość łódki:" id="boatLength" placeholder="Wielkość łódki" />
       <label htmlFor="bowThruster">Ster strumieniowy:</label>
       <div>
-        <input type="radio" id="bowThrusterYes" name="bowThruster" value="tak" />
+        <input type="radio" id="bowThrusterYes" name="Ster strumieniowy" value="tak" />
         <label htmlFor="bowThrusterYes">Tak</label>
       </div>
       <div>
-        <input type="radio" id="bowThrusterNo" name="bowThruster" value="nie" />
+        <input type="radio" id="bowThrusterNo" name="Ster strumieniowy" value="nie" />
         <label htmlFor="bowThrusterNo">Nie</label>
       </div>
       <div>
-        <input type="radio" id="bowThrusterNeutral" name="bowThruster" value="obojętnie" />
+        <input type="radio" id="bowThrusterNeutral" name="Ster strumieniowy" value="obojętnie" />
         <label htmlFor="bowThrusterNeutral">Obojętnie</label>
       </div>
       <label htmlFor="numberOfRudders">Ilość sterów:</label>
-      <textarea name="numberOfRudders" id="numberOfRudders" placeholder="Ilość sterów" />
+      <textarea name="Ilość sterów" id="numberOfRudders" placeholder="Ilość sterów" />
       <label htmlFor="boatModel">Marka i model łódki:</label>
-      <textarea name="boatModel" id="boatModel" placeholder="Marka i model łódki" />
+      <textarea name="Marka i model łódki" id="boatModel" placeholder="Marka i model łódki" />
       <label htmlFor="yearOfProduction">Rok produkcji:</label>
-      <textarea name="yearOfProduction" id="yearOfProduction" placeholder="Rok produkcji" />
+      <textarea name="Rok produkcji" id="yearOfProduction" placeholder="Rok produkcji" />
       {state.succeeded ? <p>Dziękujemy za wiadomość!</p> : null}
       <StyledButton type="submit" disabled={state.submitting}>
         Wyślij

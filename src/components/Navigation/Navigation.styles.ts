@@ -35,6 +35,7 @@ export const StyledBurger = styled.label<IsOpenProps>`
   border: none;
   cursor: pointer;
   z-index: 10;
+  -webkit-tap-highlight-color: transparent;
 
   div {
     width: 2rem;
@@ -42,7 +43,7 @@ export const StyledBurger = styled.label<IsOpenProps>`
     background-color: ${({ theme }) => theme.color.black};
   }
 
-  div:nth-child(1) {
+  div:first-child {
     position: ${({ isOpen }) => (isOpen ? 'absolute' : '')};
     top: ${({ isOpen }) => (isOpen ? '50%' : '')};
     left: ${({ isOpen }) => (isOpen ? '50%' : '')};
@@ -53,7 +54,7 @@ export const StyledBurger = styled.label<IsOpenProps>`
     opacity: ${({ isOpen }) => (isOpen ? 0 : 1)};
   }
 
-  div:nth-child(3) {
+  div:last-child {
     position: ${({ isOpen }) => (isOpen ? 'absolute' : '')};
     top: ${({ isOpen }) => (isOpen ? '50%' : '')};
     left: ${({ isOpen }) => (isOpen ? '50%' : '')};
@@ -66,7 +67,7 @@ export const StyledBurger = styled.label<IsOpenProps>`
 `;
 
 export const StyledButton = styled(Link)<IsOpenProps>`
-  width: calc(100% + 30px);
+  width: ${({ isOpen }) => (isOpen ? '' : 'calc(100% + 30px)')};
   position: relative;
   overflow: hidden;
   box-shadow: ${({ isOpen }) => (isOpen ? '' : 'inset 0 0 0 2px black')};
@@ -98,7 +99,7 @@ export const StyledButton = styled(Link)<IsOpenProps>`
 export const Wrapper = styled.div<IsOpenProps>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -107,7 +108,6 @@ export const Wrapper = styled.div<IsOpenProps>`
   align-items: center;
   justify-content: space-between;
   padding: 50px;
-  overflow: hidden;
 
   ${({ theme }) => theme.mq.tablet} {
     font-size: ${({ theme }) => theme.font.size.headingMobile};
@@ -136,6 +136,7 @@ export const StyledLogo = styled(Link)<StyledLogoProps>`
 
   ${({ theme }) => theme.mq.desktop} {
     display: ${({ isMobile }) => (isMobile ? 'none' : 'initial')};
+    margin-bottom: 45px;
   }
 `;
 
@@ -164,6 +165,7 @@ export const StyledNavigation = styled.nav<IsOpenProps>`
 
     li {
       a {
+        margin: 0 auto;
         display: inline-block;
         padding: 25px;
         font-family: ${({ theme }) => theme.font.family.merriweather};

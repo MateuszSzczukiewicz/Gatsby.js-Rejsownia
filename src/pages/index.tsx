@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql, Link, PageProps } from 'gatsby';
 import { ContentWrapper } from '../components/ContentWrapper/ContentWrapper.styles';
 import { StyledList } from '../components/StyledList/StyledList.styles';
@@ -19,6 +19,9 @@ import {
   ServicesSection,
   StyledHeading,
 } from 'assets/styles/pages/homepage.styles.ts';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
 const Homepage: React.FC<PageProps> = () => {
   const data = useStaticQuery(graphql`
@@ -43,16 +46,95 @@ const Homepage: React.FC<PageProps> = () => {
       }
     }
   `);
+  const heroHeading = useRef(null);
+  const welcome = useRef(null);
+  const offers = useRef(null);
+  const showcase = useRef(null);
+  const services = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(
+      heroHeading.current,
+      { x: '-=150%', autoAlpha: 0 },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 1,
+        ease: 'power3',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: heroHeading.current,
+          start: 'top bottom',
+        },
+      },
+    );
+    gsap.fromTo(
+      welcome.current,
+      { autoAlpha: 0 },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 1,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: welcome.current,
+          start: 'top bottom',
+        },
+      },
+    );
+    gsap.fromTo(
+      offers.current,
+      { autoAlpha: 0 },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 1,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: offers.current,
+          start: 'top bottom',
+        },
+      },
+    );
+    gsap.fromTo(
+      showcase.current,
+      { autoAlpha: 0 },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 1,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: showcase.current,
+          start: 'top bottom',
+        },
+      },
+    );
+    gsap.fromTo(
+      services.current,
+      { autoAlpha: 0 },
+      {
+        x: 0,
+        autoAlpha: 1,
+        duration: 1,
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: services.current,
+          start: 'top bottom',
+        },
+      },
+    );
+  }, []);
 
   return (
     <ContentWrapper>
       <Hero>
-        <HeroHeading>
+        <HeroHeading ref={heroHeading}>
           <h1>Twoja Przygoda na Falach Rozpoczyna Się Tutaj!</h1>
         </HeroHeading>
         <HeroImage imageSource={data.hero.publicURL} />
       </Hero>
-      <WelcomeSection>
+      <WelcomeSection ref={welcome}>
         <WelcomeSectionContent>
           <h2>Witaj na Pokładzie L.A Yachting</h2>
           <p>
@@ -69,7 +151,7 @@ const Homepage: React.FC<PageProps> = () => {
         </WelcomeSectionContent>
         <WelcomeSectionImage imageSource={data.welcome.publicURL} />
       </WelcomeSection>
-      <OffersSection>
+      <OffersSection ref={offers}>
         <StyledHeading>Odkryj Świat Naszych Rejsów!</StyledHeading>
         <StyledList>
           <li>
@@ -100,7 +182,7 @@ const Homepage: React.FC<PageProps> = () => {
           </li>
         </StyledList>
       </OffersSection>
-      <ShowcaseSection>
+      <ShowcaseSection ref={showcase}>
         <h2>Oferta rejsów</h2>
         <div>
           <StyledOffer>Grecja</StyledOffer>
@@ -116,7 +198,7 @@ const Homepage: React.FC<PageProps> = () => {
           <ShowcaseImage src={data.grid4.publicURL} alt="#" />
         </ShowcaseGallery>
       </ShowcaseSection>
-      <ServicesSection>
+      <ServicesSection ref={services}>
         <div>
           <StyledHeading>Zrealizuj swoje marzenia!</StyledHeading>
           <StyledLinkButton as={Link} to="/kontakt">

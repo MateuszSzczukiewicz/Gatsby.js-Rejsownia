@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
@@ -20,6 +20,14 @@ export const Navigation: React.FC = () => {
   `);
 
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
 
   const toggleNavigation = () => {
     setIsOpen(!isOpen);

@@ -30,8 +30,8 @@ export const Turystyczne: React.FC<PageProps> = ({ data }) => {
       <IntroSection>
         <StyledHeading>Nasza oferta rejsów turystycznych</StyledHeading>
         <p>
-          Bezustannie przeszukujemy bogatą gamę rejsów turystycznych, gotowych zaspokoić każde gusta podróżników. Wybierz rodzaj rejsu, który wzbudza
-          Twoje zainteresowanie.
+          Bezustannie przygotowujemy bogatą gamę rejsów turystycznych, gotowych zaspokoić każde gusta podróżników. Wybierz rejs, który wzbudza Twoje
+          zainteresowanie.
         </p>
       </IntroSection>
       {cruises.length ? (

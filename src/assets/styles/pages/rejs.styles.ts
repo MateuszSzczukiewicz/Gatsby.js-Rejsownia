@@ -4,7 +4,7 @@ import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles'
 export const OfferDetailsList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 auto;
+  margin-bottom: 50px;
 
   li {
     display: flex;
@@ -19,6 +19,8 @@ export const OfferDetailsList = styled.ul`
   }
 
   ${({ theme }) => theme.mq.desktop} {
+    margin: 0 auto;
+
     li {
       margin: 30px 0;
     }
@@ -31,6 +33,7 @@ export const OfferDetailsList = styled.ul`
 
 export const StyledImage = styled.img`
   width: 100%;
+  min-height: 260px;
   max-height: 500px;
   object-fit: cover;
 `;
