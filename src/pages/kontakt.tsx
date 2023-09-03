@@ -24,9 +24,9 @@ export const Kontakt: React.FC<PageProps> = () => {
           na Twoje pytania.
         </p>
         <address>
-          <a href="mailto:andylatusek@gmail.com">
+          <a href="mailto:l.a.yachtingltd@gmail.com">
             <EmailIcon />
-            andylatusek@gmail.com
+            l.a.yachtingltd@gmail.com
           </a>
         </address>
         <a href="tel:+48668890650">

@@ -24,7 +24,7 @@ export const ContactPhoto = styled.div<ContactPhotoProps>`
     background-image: url('${({ imageSource }) => imageSource}');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 0 80%;
+    background-position: 0 50%;
   }
 `;
 
