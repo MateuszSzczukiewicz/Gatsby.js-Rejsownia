@@ -107,7 +107,7 @@ export const Wrapper = styled.div<IsOpenProps>`
   background-color: ${({ theme }) => theme.color.white};
   align-items: center;
   justify-content: space-between;
-  padding: 50px;
+  padding: 50px 0 100px;
 
   ${({ theme }) => theme.mq.tablet} {
     font-size: ${({ theme }) => theme.font.size.headingMobile};

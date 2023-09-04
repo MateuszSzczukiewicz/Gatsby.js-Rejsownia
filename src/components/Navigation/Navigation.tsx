@@ -21,17 +21,17 @@ export const Navigation: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isOpen]);
-
   const toggleNavigation = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    if (isOpen && window.innerWidth <= 768) {
+      document.body.style.overflow = 'hidden';
+    } else if (!isOpen) {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
 
   return (
     <OuterWrapper>
