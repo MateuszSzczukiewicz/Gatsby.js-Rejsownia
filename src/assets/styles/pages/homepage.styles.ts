@@ -37,9 +37,11 @@ export const HeroImage = styled.div<HeroImageProps>`
   top: 15%;
   right: 0;
   opacity: 0.7;
+  filter: brightness(0.8);
 
   ${({ theme }) => theme.mq.tablet} {
     width: 70%;
+    filter: brightness(1);
   }
 
   ${({ theme }) => theme.mq.desktop} {
@@ -47,6 +49,7 @@ export const HeroImage = styled.div<HeroImageProps>`
     width: 80%;
     height: 75%;
     opacity: 1;
+    filter: brightness(1);
   }
 `;
 
