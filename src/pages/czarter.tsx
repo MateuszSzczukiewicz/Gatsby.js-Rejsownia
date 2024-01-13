@@ -2,8 +2,9 @@ import React from 'react';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles.ts';
 import { CharterForm } from 'components/CharterForm/CharterForm.tsx';
 import { IntroSection, StyledHeading } from 'assets/styles/pages/czarter.styles.ts';
+import { HeadFC } from 'gatsby';
 
-const Czarter: React.FC = () => (
+const Czarter = () => (
   <ContentWrapper>
     <IntroSection>
       <StyledHeading>Nasza oferta czarteru yachtów</StyledHeading>
@@ -17,3 +18,5 @@ const Czarter: React.FC = () => (
 );
 
 export default Czarter;
+
+export const Head: HeadFC = () => <title>Czarter jachtów</title>;

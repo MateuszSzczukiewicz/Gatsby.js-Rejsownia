@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
 import { OuterWrapper, StyledBurger, StyledButton, StyledLogo, StyledNavigation, StyledSocialIcon, Wrapper } from './Navigation.styles.ts';
+import { NavigationQueryType } from '../../types/navigationQuery.type.ts';
+import { useBodyOverflow } from '../../hooks/useBodyOverflow.ts';
+import { useToggle } from '../../hooks/useToggle.ts';
 
-interface NavigationQuery {
-  logo: {
-    publicURL: string;
-  };
-}
-
-export const Navigation: React.FC = () => {
-  const data = useStaticQuery<NavigationQuery>(graphql`
+export const Navigation = () => {
+  const data = useStaticQuery<NavigationQueryType>(graphql`
     query {
       logo: file(relativePath: { regex: "/navigation/logo.jpg/" }) {
         publicURL
@@ -19,19 +16,9 @@ export const Navigation: React.FC = () => {
     }
   `);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, toggleNavigation] = useToggle();
 
-  const toggleNavigation = () => {
-    setIsOpen(!isOpen);
-  };
-
-  useEffect(() => {
-    if (isOpen && window.innerWidth <= 768) {
-      document.body.style.overflow = 'hidden';
-    } else if (!isOpen) {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isOpen]);
+  useBodyOverflow(isOpen);
 
   return (
     <OuterWrapper>

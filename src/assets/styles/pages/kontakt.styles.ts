@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
 import { ContactFormWrapper } from 'components/ContactForm/ContactForm.styles';
-
-interface ContactPhotoProps {
-  imageSource: string;
-}
+import { ImagePropsType } from '../../../types/imagePropsType.ts';
 
 export const ContactInfoWrapper = styled.section`
   a {
@@ -15,7 +12,7 @@ export const ContactInfoWrapper = styled.section`
   }
 `;
 
-export const ContactPhoto = styled.div<ContactPhotoProps>`
+export const ContactPhoto = styled.div<ImagePropsType>`
   display: none;
 
   ${({ theme }) => theme.mq.desktop} {

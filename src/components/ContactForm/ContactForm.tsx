@@ -1,14 +1,11 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { ContactFormWrapper, StyledButton } from 'components/ContactForm/ContactForm.styles.ts';
+import { FormValuesType } from '../../types/formValues.type.ts';
 
-interface FormValues {
-  [key: string]: string;
-}
-
-export const ContactForm: React.FC = () => {
+export const ContactForm = () => {
   const contactFormKey = process.env.GATSBY_CONTACT_FORM || '';
-  const [state, handleSubmit] = useForm<FormValues>(contactFormKey);
+  const [state, handleSubmit] = useForm<FormValuesType>(contactFormKey);
 
   return (
     <ContactFormWrapper onSubmit={handleSubmit}>

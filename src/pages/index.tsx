@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useStaticQuery, graphql, Link, PageProps } from 'gatsby';
+import { useStaticQuery, graphql, Link, PageProps, HeadFC } from 'gatsby';
 import { ContentWrapper } from '../components/ContentWrapper/ContentWrapper.styles';
 import { StyledList } from '../components/StyledList/StyledList.styles';
 import {
@@ -26,22 +26,22 @@ gsap.registerPlugin(ScrollTrigger);
 const Homepage: React.FC<PageProps> = () => {
   const data = useStaticQuery(graphql`
     query Homepage {
-      hero: file(relativePath: { regex: "/homepage/0_hero.jpg/" }) {
+      hero: file(relativePath: { regex: "/homepage/0_hero.webp/" }) {
         publicURL
       }
-      welcome: file(relativePath: { regex: "/homepage/1_welcome.jpg/" }) {
+      welcome: file(relativePath: { regex: "/homepage/1_welcome.webp/" }) {
         publicURL
       }
-      grid1: file(relativePath: { regex: "/homepage/2_grid.jpg/" }) {
+      grid1: file(relativePath: { regex: "/homepage/2_grid.webp/" }) {
         publicURL
       }
-      grid2: file(relativePath: { regex: "/homepage/3_grid.jpg/" }) {
+      grid2: file(relativePath: { regex: "/homepage/3_grid.webp/" }) {
         publicURL
       }
-      grid3: file(relativePath: { regex: "/homepage/4_grid.jpg/" }) {
+      grid3: file(relativePath: { regex: "/homepage/4_grid.webp/" }) {
         publicURL
       }
-      grid4: file(relativePath: { regex: "/homepage/5_grid.jpg/" }) {
+      grid4: file(relativePath: { regex: "/homepage/5_grid.webp/" }) {
         publicURL
       }
     }
@@ -217,3 +217,5 @@ const Homepage: React.FC<PageProps> = () => {
 };
 
 export default Homepage;
+
+export const Head: HeadFC = () => <title>Strona główna</title>;

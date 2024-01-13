@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-
-interface HeroImageProps {
-  imageSource: string;
-}
-
-interface WelcomeSectionImageProps {
-  imageSource: string;
-}
+import { ImagePropsType } from '../../../types/imagePropsType.ts';
 
 export const Hero = styled.div`
   position: relative;
@@ -26,7 +19,7 @@ export const Hero = styled.div`
   }
 `;
 
-export const HeroImage = styled.div<HeroImageProps>`
+export const HeroImage = styled.div<ImagePropsType>`
   background-image: url('${({ imageSource }) => imageSource}');
   background-position: 50% 50%;
   background-size: cover;
@@ -130,7 +123,7 @@ export const WelcomeSectionContent = styled.div`
   }
 `;
 
-export const WelcomeSectionImage = styled.div<WelcomeSectionImageProps>`
+export const WelcomeSectionImage = styled.div<ImagePropsType>`
   margin: 10px auto 100px;
   width: 100%;
   height: 170px;

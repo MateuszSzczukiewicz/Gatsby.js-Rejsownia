@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getPageSlug } from 'helpers/getPageSlug';
+import { getPageSlug } from '../../utils/getPageSlug';
 import { ThumbnailImage, ThumbnailInfo, ThumbnailWrapper } from './Thumbnail.styles';
 
 export const Thumbnail = ({ imageSource = '', place = '', date = '' }) => {

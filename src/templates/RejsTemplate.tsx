@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { graphql } from 'gatsby';
 import {
   Gallery,
@@ -12,35 +12,16 @@ import {
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { ContactDetails } from 'components/ContactDetails/ContactDetails';
+import { CruiseTemplateProps } from '../types/cruiseTemplate.type.ts';
+import { SingleCruiseType } from '../types/singleCruise.type.ts';
 
-interface Cruise {
-  title: string;
-  place: string;
-  date: string;
-  cost: string;
-  descriptionNode: {
-    childMarkdownRemark: {
-      html: string;
-    };
+const RejsTemplate: FC<CruiseTemplateProps> = ({ data }) => {
+  const galleryOptions = {
+    showStatus: false,
+    showThumbs: false,
+    infiniteLoop: true,
   };
-  gallery: {
-    url: string;
-  }[];
-}
 
-interface RejsTemplateProps {
-  data: {
-    cruise: Cruise;
-  };
-}
-
-const galleryOptions = {
-  showStatus: false,
-  showThumbs: false,
-  infiniteLoop: true,
-};
-
-const RejsTemplate: React.FC<RejsTemplateProps> = ({ data }) => {
   const cruise = data.cruise;
 
   return (
@@ -101,3 +82,12 @@ export const query = graphql`
 `;
 
 export default RejsTemplate;
+
+export const Head: FC<CruiseTemplateProps> = ({ data }) => {
+  const cruise: SingleCruiseType = data.cruise;
+  return (
+    <title>
+      {cruise.place} {cruise.date}
+    </title>
+  );
+};

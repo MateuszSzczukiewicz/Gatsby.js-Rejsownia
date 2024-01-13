@@ -1,15 +1,8 @@
 import styled from 'styled-components';
 import { StyledIcon } from '../StyledIcon/StyledIcon';
 import { Link } from 'gatsby';
-
-interface IsOpenProps {
-  isOpen: boolean;
-}
-
-interface StyledLogoProps {
-  imageSource: string;
-  isMobile?: boolean;
-}
+import { IsOpenPropsType } from '../../types/isOpenProps.type.ts';
+import { StyledLogoPropsType } from '../../types/styledLogoProps.type.ts';
 
 export const OuterWrapper = styled.div`
   display: flex;
@@ -22,7 +15,7 @@ export const OuterWrapper = styled.div`
   z-index: 1000;
 `;
 
-export const StyledBurger = styled.label<IsOpenProps>`
+export const StyledBurger = styled.label<IsOpenPropsType>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -66,11 +59,9 @@ export const StyledBurger = styled.label<IsOpenProps>`
   }
 `;
 
-export const StyledButton = styled(Link)<IsOpenProps>`
-  width: ${({ isOpen }) => (isOpen ? '' : 'calc(100% + 30px)')};
+export const StyledButton = styled(Link)<IsOpenPropsType>`
   position: relative;
   overflow: hidden;
-  box-shadow: ${({ isOpen }) => (isOpen ? '' : 'inset 0 0 0 2px black')};
 
   span {
     position: relative;
@@ -94,9 +85,22 @@ export const StyledButton = styled(Link)<IsOpenProps>`
   &:hover::after {
     transform: translate(-50%, -50%) scale(0) rotate(45deg);
   }
+
+  ${({ theme }) => theme.mq.tablet} {
+    scale: 150%;
+  }
+
+  ${({ theme }) => theme.mq.desktop} {
+    scale: 100%;
+  }
+
+  ${({ theme }) => theme.mq.bigDesktop} {
+    box-shadow: inset 0 0 0 2px black;
+    width: calc(100% + 30px);
+  }
 `;
 
-export const Wrapper = styled.div<IsOpenProps>`
+export const Wrapper = styled.div<IsOpenPropsType>`
   display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   flex-direction: column;
   width: 100%;
@@ -124,7 +128,7 @@ export const Wrapper = styled.div<IsOpenProps>`
   }
 `;
 
-export const StyledLogo = styled(Link)<StyledLogoProps>`
+export const StyledLogo = styled(Link)<StyledLogoPropsType>`
   width: 100px;
   height: 70px;
   display: initial;
@@ -157,7 +161,7 @@ export const StyledSocialIcon = styled(StyledIcon)`
   }
 `;
 
-export const StyledNavigation = styled.nav<IsOpenProps>`
+export const StyledNavigation = styled.nav<IsOpenPropsType>`
   ul {
     list-style: none;
     padding: 0;

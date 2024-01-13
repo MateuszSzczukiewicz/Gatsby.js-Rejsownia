@@ -1,15 +1,12 @@
 import React from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { ContactFormWrapper, StyledButton } from 'components/CharterForm/CharterForm.styles';
+import { FormValuesType } from '../../types/formValues.type.ts';
 
-interface FormValues {
-  [key: string]: string;
-}
-
-export const CharterForm: React.FC = () => {
+export const CharterForm = () => {
   const charterFormKey = process.env.GATSBY_CHARTER_FORM || '';
 
-  const [state, handleSubmit] = useForm<FormValues>(charterFormKey);
+  const [state, handleSubmit] = useForm<FormValuesType>(charterFormKey);
 
   return (
     <ContactFormWrapper onSubmit={handleSubmit}>
