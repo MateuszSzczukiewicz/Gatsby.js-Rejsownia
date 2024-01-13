@@ -5,19 +5,15 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const gatsbyRequiredRules = path.join(
-  process.cwd(),
-  'node_modules',
-  'gatsby',
-  'dist',
-  'utils',
-  'eslint-rules',
-);
+const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules');
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: 'L.A. Yachting',
-    siteUrl: 'https://la-yachting.pl',
+    description:
+      'Przygotuj się na niezapomniane przygody na falach z L.A. Yachting. Z ponad trzydziestoletnim doświadczeniem, zapewniamy doskonale zorganizowane rejsy, unikalną żeglarską atmosferę oraz atrakcje zarówno na morzu, jak i na lądzie.',
+    image: '/logo.jpg',
+    siteUrl: 'https://la-yachting.com',
   },
   graphqlTypegen: true,
   plugins: [

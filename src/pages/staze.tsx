@@ -1,28 +1,11 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React, { FC } from 'react';
+import { graphql, HeadFC } from 'gatsby';
 import { ContentWrapper } from 'components/ContentWrapper/ContentWrapper.styles';
 import { EmptyState, Gallery, IntroSection, StyledHeading } from 'assets/styles/pages/rejsy.styles.ts';
 import { Thumbnail } from 'components/Thumbnail/Thumbnail';
+import { PagePropsType } from '../types/pageProps.type.ts';
 
-interface Cruise {
-  id: string;
-  istraining: boolean;
-  place: string;
-  date: string;
-  gallery: {
-    url: string;
-  }[];
-}
-
-interface PageProps {
-  data: {
-    cruises: {
-      nodes: Cruise[];
-    };
-  };
-}
-
-export const Staze: React.FC<PageProps> = ({ data }) => {
+export const TrainingCruises: FC<PagePropsType> = ({ data }) => {
   const cruises = data.cruises.nodes.filter((cruise) => cruise.istraining);
 
   return (
@@ -66,4 +49,6 @@ export const query = graphql`
   }
 `;
 
-export default Staze;
+export default TrainingCruises;
+
+export const Head: HeadFC = () => <title>Staże i szkolenia</title>;

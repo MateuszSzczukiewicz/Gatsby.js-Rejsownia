@@ -1,17 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { ContactDetailsWrapper } from './ContactDetails.styles';
+import { HeroQueryType } from '../../types/heroQuery.type.ts';
 
-interface HeroQuery {
-  hero: {
-    publicURL: string;
-  };
-}
-
-export const ContactDetails: React.FC = () => {
-  const data: HeroQuery = useStaticQuery(graphql`
+export const ContactDetails: FC = () => {
+  const data: HeroQueryType = useStaticQuery(graphql`
     query {
-      hero: file(relativePath: { regex: "/kontakt/0_hero.jpg/" }) {
+      hero: file(relativePath: { regex: "/kontakt/0_hero.webp/" }) {
         publicURL
       }
     }

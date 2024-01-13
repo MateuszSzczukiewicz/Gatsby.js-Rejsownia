@@ -1,14 +1,14 @@
-import React from 'react';
-import { useStaticQuery, graphql, PageProps } from 'gatsby';
+import React, { FC } from 'react';
+import { useStaticQuery, graphql, PageProps, HeadFC } from 'gatsby';
 import { ContactContentWrapper, ContactInfoWrapper, ContactPhoto, StyledHeading } from 'assets/styles/pages/kontakt.styles';
 import { PhoneIcon } from 'assets/icons/PhoneIcon';
 import { EmailIcon } from 'assets/icons/EmailIcon.tsx';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 
-export const Kontakt: React.FC<PageProps> = () => {
+export const Contact: FC<PageProps> = () => {
   const data = useStaticQuery(graphql`
     query {
-      hero: file(relativePath: { regex: "/kontakt/0_hero.jpg/" }) {
+      hero: file(relativePath: { regex: "/kontakt/0_hero.webp/" }) {
         publicURL
       }
     }
@@ -24,7 +24,7 @@ export const Kontakt: React.FC<PageProps> = () => {
           na Twoje pytania.
         </p>
         <address>
-          <a href="mailto:l.a.yachtingltd@gmail.com">
+          <a href="mailto:l.a.yachtingltd@gmail.com" target="_blank" rel="noreferrer">
             <EmailIcon />
             l.a.yachtingltd@gmail.com
           </a>
@@ -40,4 +40,6 @@ export const Kontakt: React.FC<PageProps> = () => {
   );
 };
 
-export default Kontakt;
+export default Contact;
+
+export const Head: HeadFC = () => <title>Kontakt</title>;

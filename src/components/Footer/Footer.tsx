@@ -4,7 +4,7 @@ import { FacebookIcon } from 'assets/icons/FacebookIcon';
 import { InstagramIcon } from 'assets/icons/InstagramIcon';
 import { StyledFooter, StyledFooterIcon, StyledHeading } from './Footer.styles';
 
-export const Footer: React.FC = () => (
+export const Footer = () => (
   <StyledFooter>
     <StyledHeading to="/">L.A. Yachting</StyledHeading>
     <div>
