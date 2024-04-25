@@ -26,7 +26,7 @@ export const TouristCruises: FC<PagePropsType> = ({ data }) => {
       ) : (
         <EmptyState>
           <h2>Brak rejsów turystycznych</h2>
-          <h3>Już niebawem nowe rejsy turystyczne od L.A. Yachting</h3>
+          <h3>Już niebawem nowe rejsy turystyczne od Rejsowni</h3>
         </EmptyState>
       )}
     </ContentWrapper>

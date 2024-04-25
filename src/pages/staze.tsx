@@ -26,7 +26,7 @@ export const TrainingCruises: FC<PagePropsType> = ({ data }) => {
       ) : (
         <EmptyState>
           <h2>Brak stażów i rejsów szkoleniowych</h2>
-          <h3>Już niebawem nowe staże rejsy szkoleniowe od L.A. Yachting</h3>
+          <h3>Już niebawem nowe staże rejsy szkoleniowe od Rejsowni</h3>
         </EmptyState>
       )}
     </ContentWrapper>

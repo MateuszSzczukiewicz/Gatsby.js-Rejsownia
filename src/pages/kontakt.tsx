@@ -24,14 +24,14 @@ export const Contact: FC<PageProps> = () => {
           na Twoje pytania.
         </p>
         <address>
-          <a href="mailto:l.a.yachtingltd@gmail.com" target="_blank" rel="noreferrer">
+          <a href="mailto:rejsownia@gmail.com" target="_blank" rel="noreferrer">
             <EmailIcon />
-            l.a.yachtingltd@gmail.com
+            rejsownia@gmail.com
           </a>
         </address>
-        <a href="tel:+48668890650">
+        <a href="tel:+48498301286">
           <PhoneIcon />
-          +48 668 890 650
+          +48 498 301 286
         </a>
       </ContactInfoWrapper>
       <ContactForm />
