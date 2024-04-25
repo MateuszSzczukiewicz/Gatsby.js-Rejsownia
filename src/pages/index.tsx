@@ -46,28 +46,12 @@ const Homepage: React.FC<PageProps> = () => {
       }
     }
   `);
-  const heroHeading = useRef(null);
   const welcome = useRef(null);
   const offers = useRef(null);
   const showcase = useRef(null);
   const services = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      heroHeading.current,
-      { x: '-=150%', autoAlpha: 0 },
-      {
-        x: 0,
-        autoAlpha: 1,
-        duration: 1,
-        ease: 'power3',
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: heroHeading.current,
-          start: 'top bottom',
-        },
-      },
-    );
     gsap.fromTo(
       welcome.current,
       { autoAlpha: 0 },
@@ -129,21 +113,21 @@ const Homepage: React.FC<PageProps> = () => {
   return (
     <ContentWrapper>
       <Hero>
-        <HeroHeading ref={heroHeading}>
+        <HeroHeading>
           <h1>Twoja Przygoda na Falach Rozpoczyna Się Tutaj!</h1>
         </HeroHeading>
         <HeroImage imageSource={data.hero.publicURL} />
       </Hero>
       <WelcomeSection ref={welcome}>
         <WelcomeSectionContent>
-          <h2>Witaj na Pokładzie L.A Yachting</h2>
+          <h2>Witaj na Pokładzie Rejsowni</h2>
           <p>
-            Przygotuj się na niezapomniane przygody na falach z L.A. Yachting. Z ponad trzydziestoletnim doświadczeniem, zapewniamy doskonale
+            Przygotuj się na niezapomniane przygody na falach z Rejsownią. Z ponad trzydziestoletnim doświadczeniem, zapewniamy doskonale
             zorganizowane rejsy, unikalną żeglarską atmosferę oraz atrakcje zarówno na morzu, jak i na lądzie. Wszystko to pod czujnym okiem
-            doświadczonego mistrza żeglugi - Andrzeja Latuska, który wprowadzi Cię w świat morskich wyzwań i przygód.
+            doświadczonego mistrza żeglugi - Marcina Morzeckiego, który wprowadzi Cię w świat morskich wyzwań i przygód.
           </p>
           <p>
-            Andrzej Latusek to żeglarz z trzydziestoletnim stażem, odpowiedzialny za nasze niezapomniane rejsy. Jego pasja i doświadczenie sprawiają,
+            Marcin Morzecki to żeglarz z dwudziestoletnim stażem, odpowiedzialny za nasze niezapomniane rejsy. Jego pasja i doświadczenie sprawiają,
             że każda chwila na pokładzie jest nie tylko bezpieczna, ale także inspirująca. Nasze wyprawy prowadzą przez malownicze tereny, takie jak
             urokliwa Grecja, egzotyczna Teneryfa, urocza Chorwacja czy rajskie Karaiby. To więcej niż tylko podróż – to wyjątkowe doświadczenie, które
             połączy Cię z pięknem natury i sztuką żeglowania.
@@ -206,10 +190,9 @@ const Homepage: React.FC<PageProps> = () => {
           </StyledLinkButton>
         </div>
         <p>
-          L.A. Yachting – Twoja droga do niezapomnianych chwil na falach, do spotkań z naturą w jej najczystszej formie i tworzenia relacji na całe
-          lata. Przygotuj się na wyjątkowe przygody, nowe przyjaźnie i niesamowite wspomnienia. Razem z nami żeglowanie nabiera nowego znaczenia –
-          staje się pasją, stylem życia i sposobem na odkrywanie świata w sposób, o jakim marzyłeś. Dołącz do Nas i odkryj, jak piękny może być świat
-          na morzu.
+          Rejsownia – Twoja droga do niezapomnianych chwil na falach, do spotkań z naturą w jej najczystszej formie i tworzenia relacji na całe lata.
+          Przygotuj się na wyjątkowe przygody, nowe przyjaźnie i niesamowite wspomnienia. Razem z nami żeglowanie nabiera nowego znaczenia – staje się
+          pasją, stylem życia i sposobem na odkrywanie świata w sposób, o jakim marzyłeś. Dołącz do Nas i odkryj, jak piękny może być świat na morzu.
         </p>
       </ServicesSection>
     </ContentWrapper>

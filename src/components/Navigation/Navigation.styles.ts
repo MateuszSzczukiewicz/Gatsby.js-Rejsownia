@@ -130,13 +130,12 @@ export const Wrapper = styled.div<IsOpenPropsType>`
 
 export const StyledLogo = styled(Link)<StyledLogoPropsType>`
   width: 100px;
-  height: 70px;
+  height: 100px;
   display: initial;
   position: relative;
   background-image: url('${({ imageSource }) => imageSource}');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0 80%;
 
   ${({ theme }) => theme.mq.desktop} {
     display: ${({ isMobile }) => (isMobile ? 'none' : 'initial')};

@@ -10,7 +10,7 @@ import { useToggle } from '../../hooks/useToggle.ts';
 export const Navigation = () => {
   const data = useStaticQuery<NavigationQueryType>(graphql`
     query {
-      logo: file(relativePath: { regex: "/navigation/logo.jpg/" }) {
+      logo: file(relativePath: { regex: "/navigation/logo.webp/" }) {
         publicURL
       }
     }
@@ -55,10 +55,10 @@ export const Navigation = () => {
           </ul>
         </StyledNavigation>
         <div>
-          <StyledSocialIcon as="a" href="https://www.facebook.com/layachting" target="_blank">
+          <StyledSocialIcon as="a" href="https://www.facebook.com/rejsownia" target="_blank">
             <FacebookIcon />
           </StyledSocialIcon>
-          <StyledSocialIcon as="a" href="https://www.instagram.com/layachting/" target="_blank">
+          <StyledSocialIcon as="a" href="https://www.instagram.com/rejsownia" target="_blank">
             <InstagramIcon />
           </StyledSocialIcon>
         </div>
