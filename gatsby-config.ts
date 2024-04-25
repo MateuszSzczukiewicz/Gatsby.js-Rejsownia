@@ -9,11 +9,11 @@ const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', '
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: 'L.A. Yachting',
+    title: 'Rejsownia',
     description:
-      'Przygotuj się na niezapomniane przygody na falach z L.A. Yachting. Z ponad trzydziestoletnim doświadczeniem, zapewniamy doskonale zorganizowane rejsy, unikalną żeglarską atmosferę oraz atrakcje zarówno na morzu, jak i na lądzie.',
+      'Przygotuj się na niezapomniane przygody na falach z Rejsownią. Z ponad dwudziestoletnim doświadczeniem, zapewniamy doskonale zorganizowane rejsy, unikalną żeglarską atmosferę oraz atrakcje zarówno na morzu, jak i na lądzie.',
     image: '/logo.jpg',
-    siteUrl: 'https://la-yachting.com',
+    siteUrl: 'https://rejsownia.vercel.com',
   },
   graphqlTypegen: true,
   plugins: [
@@ -47,15 +47,6 @@ const config: GatsbyConfig = {
         path: './src/assets/images/',
       },
       __key: 'images',
-    },
-    {
-      resolve: 'gatsby-plugin-google-gtag',
-      options: {
-        trackingIds: [process.env.GATSBY_TRACKING_ID],
-        pluginConfig: {
-          head: true,
-        },
-      },
     },
     {
       resolve: 'gatsby-plugin-eslint',
